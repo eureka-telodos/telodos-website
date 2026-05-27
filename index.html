@@ -18,7 +18,10 @@
                             card: '#1b1122',
                             green: '#39ff14',
                             emerald: '#00ffaa',
-                            purple: '#8a2be2'
+                            purple: '#8a2be2',
+                            fantia: '#10b981', /* emerald-500 (緑系に変更) */
+                            fanbox: '#f59e0b', /* amber-500 */
+                            booth: '#991b1b',  /* red-800 */
                         }
                     },
                     boxShadow: {
@@ -49,6 +52,34 @@
         .font-gothic-gothic {
             font-family: 'UnifrakturMaguntia', cursive;
         }
+
+        /* --------------------------------------
+           Performance & Accessibility Optimizations
+           -------------------------------------- */
+        .content-section {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 800px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto !important;
+            }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .kv-silhouette-img {
+                filter: opacity(0.3) !important; 
+            }
+            .scroll-indicator::after {
+                animation: none !important;
+                transform: scaleY(1) !important;
+            }
+        }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -64,6 +95,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #39ff14;
         }
+        
         /* Gothic border effect */
         .gothic-border {
             border: 2px solid #1b1122;
@@ -71,23 +103,17 @@
             outline-offset: -4px;
         }
         
-        /* Key Visual Styles */
+        /* Key Visual Styles - 100vhで画面全体に表示 */
         .kv {
             position: relative;
-            height: 100vh;
             width: 100%;
+            height: 100vh;
+            height: 100dvh; 
             overflow: hidden;
             background-color: #050206;
         }
-        .kv-bg {
-            position: absolute;
-            inset: -10%;
-            z-index: 1;
-            transition: transform 0.1s ease-out;
-            width: 120%;
-            height: 120%;
-        }
-        /* Corner decoration like e-chan */
+        
+        /* Corner decoration */
         .kv-corner {
             position: absolute;
             inset: 20px;
@@ -119,7 +145,7 @@
             position: absolute;
             pointer-events: none;
             display: flex;
-            align-items: center;
+            align-items: center; 
             justify-content: center;
         }
         
@@ -131,31 +157,27 @@
             height: 120%;
         }
 
-        /* Character and Effect Layers (Aligned to top, responsive width) */
-        .kv-layer-front {
-            top: -3%; /* Parallax margin */
+        /* Character Layers (Aligned to top) */
+        .kv-layer-chara {
+            top: -3%;
             left: -3%;
             width: 106%;
             height: 106%;
-            align-items: flex-start; /* Align images to the top */
-        }
-        
-        /* Silhouette Layer (Back) */
-        .kv-layer-02 {
-            z-index: 3;
-        }
-        
-        /* Character Layer (Middle) */
-        .kv-layer-01 {
-            z-index: 4;
+            align-items: flex-start;
         }
 
         /* Effect Layer */
-        .kv-layer-effect {
-            z-index: 5;
+        .kv-layer-effect-container {
+            top: -3%;
+            left: -3%;
+            width: 106%;
+            height: 106%;
+            align-items: center;
         }
         
-        /* Title Layer (Front) */
+        .kv-layer-02 { z-index: 3; }
+        .kv-layer-01 { z-index: 4; }
+        .kv-layer-effect { z-index: 5; }
         .kv-layer-04 {
             inset: 0;
             z-index: 6;
@@ -169,19 +191,28 @@
             object-position: center;
         }
 
-        .kv-img-fit {
+        .kv-img-chara {
             width: 100%;
-            height: 100%;
+            height: 100%; 
             object-fit: cover;
             object-position: top center;
+            display: block;
         }
 
-        /* Green neon silhouette styling using CSS filters */
+        .kv-img-effect {
+            width: 100%;
+            height: 100%; 
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        /* Green neon silhouette styling */
         .kv-silhouette-img {
             filter: brightness(0) saturate(100%) invert(58%) sepia(93%) saturate(1519%) hue-rotate(81deg) brightness(109%) contrast(117%) blur(20px) opacity(0.5);
         }
 
-        /* Title Logo Typography styling */
+        /* Title Logo Typography */
         .kv-title-container {
             text-align: center;
             text-shadow: 0 0 10px rgba(10, 5, 12, 0.9), 0 0 30px rgba(57, 255, 20, 0.4);
@@ -241,11 +272,11 @@
 <body class="bg-vampire-black text-gray-300 antialiased selection:bg-vampire-green selection:text-black">
 
     <!-- Header Navigation -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-vampire-black/95 backdrop-blur-md border-b border-vampire-green/20 transition-all duration-300" id="main-header">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
             <!-- Brand Logo -->
             <a href="#" class="flex items-center group">
-                <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo_outline.webp" alt="Eureka Telodos Logo" class="h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(57,255,20,0.5)] transition duration-300 group-hover:brightness-125">
+                <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo_outline.webp" alt="Eureka Telodos Logo" width="400" height="135" fetchpriority="high" class="h-[90px] w-auto object-contain drop-shadow-[0_0_8px_rgba(57,255,20,0.5)] transition duration-300 group-hover:brightness-125">
             </a>
 
             <!-- Desktop Nav Items -->
@@ -254,16 +285,17 @@
                 <a href="#streams" class="hover:text-vampire-green transition duration-300 text-xs font-bold tracking-widest">STREAMS</a>
                 <a href="#profile" class="hover:text-vampire-green transition duration-300 text-xs font-bold tracking-widest">PROFILE</a>
                 <a href="#creation" class="hover:text-vampire-green transition duration-300 text-xs font-bold tracking-widest">CREATION</a>
-                <a href="#design-sheet" class="hover:text-vampire-green transition duration-300 text-xs font-bold tracking-widest">DESIGN SHEET</a>
                 <a href="#guidelines" class="hover:text-vampire-green transition duration-300 text-xs font-bold tracking-widest">GUIDELINES</a>
-                <a href="#contact" class="hover:text-vampire-green transition duration-300 text-xs font-bold tracking-widest">CONTACT</a>
+                <a href="#design-sheet" class="hover:text-vampire-green transition duration-300 text-xs font-bold tracking-widest">DESIGN SHEET</a>
+                <!-- CONTACTは非表示 -->
+                <a href="#contact" class="hidden hover:text-vampire-green transition duration-300 text-xs font-bold tracking-widest">CONTACT</a>
             </nav>
 
             <!-- Social Links / Quick Action -->
             <div class="hidden lg:flex items-center space-x-4">
-                <a href="https://x.com/eureka_td" target="_blank" class="text-gray-400 hover:text-vampire-green transition text-lg" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://player.twitch.tv/?channel=eureka_td" target="_blank" class="text-gray-400 hover:text-vampire-green transition text-lg" title="Twitch"><i class="fa-brands fa-twitch"></i></a>
-                <a href="https://www.youtube.com/@eureka_td" target="_blank" class="text-gray-400 hover:text-vampire-green transition text-lg" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://x.com/eureka_td" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-vampire-green transition text-lg" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://player.twitch.tv/?channel=eureka_td" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-vampire-green transition text-lg" title="Twitch"><i class="fa-brands fa-twitch"></i></a>
+                <a href="https://www.youtube.com/@eureka_td" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-vampire-green transition text-lg" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 <a href="#streams" class="bg-vampire-dark border border-vampire-green text-vampire-green font-bold px-4 py-2 rounded text-xs tracking-wider shadow-neon hover:bg-vampire-green hover:text-black transition duration-300">
                     <i class="fa-solid fa-moon mr-1.5"></i>ENTER THE NIGHT
                 </a>
@@ -283,44 +315,38 @@
             <a href="#streams" class="block text-gray-300 hover:text-vampire-green font-bold text-lg py-2 border-b border-zinc-900">STREAMS</a>
             <a href="#profile" class="block text-gray-300 hover:text-vampire-green font-bold text-lg py-2 border-b border-zinc-900">PROFILE</a>
             <a href="#creation" class="block text-gray-300 hover:text-vampire-green font-bold text-lg py-2 border-b border-zinc-900">CREATION</a>
-            <a href="#design-sheet" class="block text-gray-300 hover:text-vampire-green font-bold text-lg py-2 border-b border-zinc-900">DESIGN SHEET</a>
             <a href="#guidelines" class="block text-gray-300 hover:text-vampire-green font-bold text-lg py-2 border-b border-zinc-900">GUIDELINES</a>
-            <a href="#contact" class="block text-gray-300 hover:text-vampire-green font-bold text-lg py-2">CONTACT</a>
-            <div class="flex space-x-6 pt-4">
-                <a href="https://x.com/eureka_td" target="_blank" class="text-gray-400 hover:text-vampire-green text-2xl"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://player.twitch.tv/?channel=eureka_td" target="_blank" class="text-gray-400 hover:text-vampire-green text-2xl"><i class="fa-brands fa-twitch"></i></a>
-                <a href="https://www.youtube.com/@eureka_td" target="_blank" class="text-gray-400 hover:text-vampire-green text-2xl"><i class="fa-brands fa-youtube"></i></a>
-            </div>
+            <a href="#design-sheet" class="block text-gray-300 hover:text-vampire-green font-bold text-lg py-2 border-b border-zinc-900">DESIGN SHEET</a>
         </div>
     </header>
 
-    <!-- Interactive Parallax Key Visual Section -->
+    <!-- Interactive Parallax Key Visual Section (100vh) -->
     <section class="kv md:block flex items-center justify-center">
         <!-- Back Layer: Background Grid & Atmosphere -->
         <div class="kv-layer kv-layer-bg" id="kv-layer-bg">
-            <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/bg.webp" class="kv-img-bg" alt="" aria-hidden="true">
+            <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/bg.webp" width="1920" height="1080" fetchpriority="high" class="kv-img-bg" alt="" aria-hidden="true">
         </div>
         <div class="kv-corner"></div>
 
         <!-- Layer 02: Neon Character Silhouette (Depth effect) -->
-        <div class="kv-layer kv-layer-front kv-layer-02" id="kv-layer-02">
-            <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/floating_02.webp" class="kv-img-fit kv-silhouette-img" alt="" aria-hidden="true" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80';">
+        <div class="kv-layer kv-layer-chara kv-layer-02" id="kv-layer-02">
+            <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/floating_02.webp" width="1920" height="1080" fetchpriority="high" class="kv-img-chara kv-silhouette-img" alt="" aria-hidden="true" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80';">
         </div>
 
         <!-- Layer 01: Character Portrait Floating (Main Visual) -->
-        <div class="kv-layer kv-layer-front kv-layer-01" id="kv-layer-01">
-            <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/floating_02.webp" class="kv-img-fit" style="mix-blend-mode: lighten;" alt="ユリーカティロドス メインビジュアル" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80';">
+        <div class="kv-layer kv-layer-chara kv-layer-01" id="kv-layer-01">
+            <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/floating_02.webp" width="3840" height="2160" fetchpriority="high" class="kv-img-chara" style="mix-blend-mode: lighten;" alt="ユリーカティロドス メインビジュアル" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80';">
         </div>
 
         <!-- Layer 03: Stars and Magic Effects Layer -->
-        <div class="kv-layer kv-layer-front kv-layer-effect" id="kv-layer-effect">
-            <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/effect.webp" class="kv-img-fit" style="mix-blend-mode: screen; opacity: 0.75;" alt="" aria-hidden="true" onerror="this.onerror=null; this.style.display='none';">
+        <div class="kv-layer kv-layer-effect-container kv-layer-effect" id="kv-layer-effect">
+            <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/effect.webp" width="1920" height="1080" fetchpriority="high" class="kv-img-effect" style="mix-blend-mode: screen; opacity: 0.75;" alt="" aria-hidden="true" onerror="this.onerror=null; this.style.display='none';">
         </div>
 
         <!-- Layer 04: Title Logo (Front) -->
         <div class="kv-layer kv-layer-04 w-full" id="kv-layer-04">
             <div class="kv-title-container select-none w-full max-w-xl mx-auto px-4 pointer-events-none">
-                <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo_outline.webp" alt="Eureka Telodos" class="w-full h-auto drop-shadow-[0_0_15px_rgba(57,255,20,0.5)]">
+                <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo_outline.webp" alt="Eureka Telodos" width="400" height="135" class="w-full h-auto drop-shadow-[0_0_15px_rgba(57,255,20,0.5)]">
             </div>
         </div>
 
@@ -330,34 +356,63 @@
         </div>
     </section>
 
-    <!-- [セクション 1] News & X (Twitter) Feed Section -->
-    <section id="news" class="py-24 bg-vampire-dark border-t border-b border-zinc-900 relative">
+    <!-- [セクション 1] News & Log Section (Card style) -->
+    <section id="news" class="content-section py-24 bg-vampire-dark border-t border-b border-zinc-900 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Left Column: News Header & Instructions -->
-                <div class="lg:col-span-5 space-y-6">
-                    <div>
-                        <h2 class="text-xs text-vampire-green font-bold tracking-widest uppercase mb-2">✦ LATEST NEWS & LOG</h2>
-                        <p class="text-3xl font-black font-cinzel text-white tracking-widest">LATEST UPDATE</p>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed font-light">
-                        最新の告知や毎日の活動状況は、X（旧Twitter）で公開中。<br>是非フォローをお願いします💚
-                    </p>
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-xs text-vampire-green font-bold tracking-widest uppercase mb-2">✦ LATEST NEWS & LOG</h2>
+                    <p class="text-3xl font-black font-cinzel text-white tracking-widest">LATEST UPDATE</p>
                 </div>
-
-                <!-- Right Column: X Embed Widget -->
-                <div class="lg:col-span-7 bg-vampire-black rounded p-4 border border-zinc-900 shadow-gothic h-[500px] overflow-y-auto">
-                    <a class="twitter-timeline" data-lang="ja" data-theme="dark" href="https://twitter.com/eureka_td?ref_src=twsrc%5Etfw">Tweets by eureka_td</a>
-                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
-
             </div>
+
+            <!-- News Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="block bg-vampire-black border border-zinc-900 relative overflow-hidden shadow-gothic">
+                    <div class="absolute top-0 left-0 bg-vampire-green text-black text-[10px] font-bold px-3 py-1 tracking-wider z-10">お知らせ</div>
+                    <div class="aspect-video w-full overflow-hidden bg-zinc-800 border-b border-zinc-900">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="News Image" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-sm mb-2 line-clamp-1 text-gray-200">活動1周年！ありがとうございます！！</h3>
+                        <div class="text-gray-500 text-[10px] mb-3 font-cinzel tracking-wider">2026.05.10</div>
+                        <p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">デビューから一周年を迎えました！これからも夜更かし配信をよろしくね！いつも応援してくれるみんなのおかげでここまで来れました。記念配信でお会いしましょう。</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="block bg-vampire-black border border-zinc-900 relative overflow-hidden shadow-gothic">
+                    <div class="absolute top-0 left-0 bg-vampire-green text-black text-[10px] font-bold px-3 py-1 tracking-wider z-10">グッズ情報</div>
+                    <div class="aspect-video w-full overflow-hidden bg-zinc-800 border-b border-zinc-900">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="News Image" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-sm mb-2 line-clamp-1 text-gray-200">記念グッズBOOTHにて発売開始！</h3>
+                        <div class="text-gray-500 text-[10px] mb-3 font-cinzel tracking-wider">2026.11.21</div>
+                        <p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">いつも応援してくれるみんなのために、特別なグッズセットを用意しました！アクリルスタンドや限定ボイスなど盛りだくさんの内容になっていますのでお見逃しなく。</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="block bg-vampire-black border border-zinc-900 relative overflow-hidden shadow-gothic">
+                    <div class="absolute top-0 left-0 bg-vampire-green text-black text-[10px] font-bold px-3 py-1 tracking-wider z-10">配信情報</div>
+                    <div class="aspect-video w-full overflow-hidden bg-zinc-800 border-b border-zinc-900">
+                        <img src="https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?auto=format&fit=crop&w=600&q=80" alt="News Image" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-sm mb-2 line-clamp-1 text-gray-200">初配信日時決定！</h3>
+                        <div class="text-gray-500 text-[10px] mb-3 font-cinzel tracking-wider">2026.04.18</div>
+                        <p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">ユリーカの初配信日が決定いたしました！みんなとお話できるのを楽しみにしています。最初の配信では自己紹介とこれからの目標について語る予定です。</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- [セクション 2] Streams Section (Interactive Twitch and YouTube Embeds) -->
-    <section id="streams" class="py-24 bg-vampire-black relative">
+    <section id="streams" class="content-section py-24 bg-vampire-black relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-xs text-vampire-green font-bold tracking-widest uppercase mb-2">✦ ACTIVE CHANNELS</h2>
@@ -408,7 +463,7 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <a href="https://twitch.tv/eureka_td" target="_blank" class="flex-1 text-center bg-vampire-dark border border-vampire-green text-vampire-green hover:bg-vampire-green hover:text-black transition py-3 text-xs font-bold tracking-widest rounded shadow-neon">
+                            <a href="https://twitch.tv/eureka_td" target="_blank" rel="noopener noreferrer" class="flex-1 text-center bg-vampire-dark border border-vampire-green text-vampire-green hover:bg-vampire-green hover:text-black transition py-3 text-xs font-bold tracking-widest rounded shadow-neon">
                                 <i class="fa-brands fa-twitch mr-1"></i>Twitchへアクセス
                             </a>
                         </div>
@@ -421,7 +476,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     <div class="lg:col-span-7 bg-vampire-black rounded overflow-hidden shadow-gothic border border-zinc-900">
                         <div class="aspect-video w-full">
-                            <iframe src="https://www.youtube.com/embed/R2BarLFZ8mA?si=A1AcnybeGkXtQ-eZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/R2BarLFZ8mA?si=A1AcnybeGkXtQ-eZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     </div>
 
@@ -444,8 +499,8 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <a href="https://www.youtube.com/@eureka_td" target="_blank" class="flex-1 text-center bg-vampire-dark border border-red-500 text-red-500 hover:bg-red-500 hover:text-black transition py-3 text-xs font-bold tracking-widest rounded shadow-neon">
-                                <i class="fa-brands fa-twitch mr-1"></i>Youtubeへアクセス
+                            <a href="https://www.youtube.com/@eureka_td" target="_blank" rel="noopener noreferrer" class="flex-1 text-center bg-vampire-dark border border-red-500 text-red-500 hover:bg-red-500 hover:text-black transition py-3 text-xs font-bold tracking-widest rounded shadow-neon">
+                                <i class="fa-brands fa-youtube mr-1"></i>Youtubeへアクセス
                             </a>
                         </div>
                     </div>
@@ -456,7 +511,7 @@
     </section>
 
     <!-- [セクション 3] Profile Section -->
-    <section id="profile" class="py-24 bg-vampire-dark relative overflow-hidden">
+    <section id="profile" class="content-section py-24 bg-vampire-dark relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
@@ -504,7 +559,7 @@
                     
                     <!-- Character Standee -->
                     <div class="absolute inset-0 z-10 flex justify-center items-end overflow-hidden">
-                        <img src="https://github.com/eureka-telodos/telodos-website/blob/main/webp/standing_01.webp" loading="lazy" decoding="async" class="h-[95%] w-auto max-w-none object-contain object-bottom transition duration-700 group-hover:scale-[1.03]" alt="ユリーカティロドス 立ち絵" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80';">
+                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/standing_01.webp" loading="lazy" decoding="async" width="800" height="1200" class="h-[95%] w-auto max-w-none object-contain object-bottom transition duration-700 group-hover:scale-[1.03]" alt="ユリーカティロドス 立ち絵" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80';">
                     </div>
 
                     <!-- Vignette / Dark gradient -->
@@ -524,7 +579,7 @@
     </section>
 
     <!-- [セクション 4] Creation Section (Fantia, FANBOX, and BOOTH) -->
-    <section id="creation" class="py-24 bg-vampire-black border-t border-b border-zinc-900 relative">
+    <section id="creation" class="content-section py-24 bg-vampire-black border-t border-b border-zinc-900 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-xs text-vampire-green font-bold tracking-widest uppercase mb-2">✦ COVEN EXCLUSIVES</h2>
@@ -536,52 +591,52 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Fantia -->
-                <div class="bg-vampire-dark rounded border border-zinc-900 p-8 transition duration-300 hover:border-vampire-green/30 shadow-gothic flex flex-col justify-between">
+                <div class="bg-vampire-dark rounded border border-zinc-900 p-8 transition duration-300 hover:border-vampire-fantia/30 shadow-gothic flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <span class="text-xl font-bold font-cinzel text-orange-500">Fantia</span>
-                            <span class="text-[9px] bg-orange-500/10 text-orange-400 px-2 py-0.5 rounded border border-orange-500/20">PORTRAITS</span>
+                            <span class="text-xl font-bold font-cinzel text-vampire-fantia">Fantia</span>
+                            <span class="text-[9px] bg-vampire-fantia/10 text-vampire-fantia px-2 py-0.5 rounded border border-vampire-fantia/20">PORTRAITS</span>
                         </div>
                         <h3 class="text-base font-bold text-white mb-3">ユリーカのお城</h3>
                         <p class="text-xs text-gray-400 leading-relaxed mb-6">
                             Xで見れない写真や動画を公開。更にFantiaではコミッションでVRChatで実際に会えるチケットやアーカイブ写真集などを販売しています。
                         </p>
                     </div>
-                    <a href="https://fantia.jp/fanclubs/474012" target="_blank" class="block text-center bg-orange-600/20 hover:bg-orange-600 border border-orange-500/40 text-orange-400 hover:text-white py-2.5 rounded text-xs font-bold transition duration-300">
+                    <a href="https://fantia.jp/fanclubs/474012" target="_blank" rel="noopener noreferrer" class="block text-center bg-vampire-fantia/20 hover:bg-vampire-fantia border border-vampire-fantia/40 text-vampire-fantia hover:text-white py-2.5 rounded text-xs font-bold transition duration-300 shadow-none hover:shadow-[0_0_15px_rgba(16,185,129,0.5)]">
                         Fantiaに加入する
                     </a>
                 </div>
 
                 <!-- pixiv FANBOX -->
-                <div class="bg-vampire-dark rounded border border-zinc-900 p-8 transition duration-300 hover:border-vampire-green/30 shadow-gothic flex flex-col justify-between">
+                <div class="bg-vampire-dark rounded border border-zinc-900 p-8 transition duration-300 hover:border-vampire-fanbox/30 shadow-gothic flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <span class="text-xl font-bold font-cinzel text-red-500">Pixiv FANBOX</span>
-                            <span class="text-[9px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded border border-red-500/20">PORTRAITS</span>
+                            <span class="text-xl font-bold font-cinzel text-vampire-fanbox">Pixiv FANBOX</span>
+                            <span class="text-[9px] bg-vampire-fanbox/10 text-vampire-fanbox px-2 py-0.5 rounded border border-vampire-fanbox/20">PORTRAITS</span>
                         </div>
                         <h3 class="text-base font-bold text-white mb-3">FANBOX出張版</h3>
                         <p class="text-xs text-gray-400 leading-relaxed mb-6">
                             基本的にはFantiaと同一内容を投稿しています。ただし、過去の写真は随時上位プランへと移されます。ほかにも、FANBOXとDiscordを連携することでファンサーバーに参加も可能です。
                         </p>
                     </div>
-                    <a href="https://eureka-td.fanbox.cc/" target="_blank" class="block text-center bg-red-600/20 hover:bg-red-600 border border-red-500/40 text-red-400 hover:text-white py-2.5 rounded text-xs font-bold transition duration-300">
+                    <a href="https://eureka-td.fanbox.cc/" target="_blank" rel="noopener noreferrer" class="block text-center bg-vampire-fanbox/20 hover:bg-vampire-fanbox border border-vampire-fanbox/40 text-vampire-fanbox hover:text-white py-2.5 rounded text-xs font-bold transition duration-300 shadow-none hover:shadow-[0_0_15px_rgba(245,158,11,0.5)]">
                         FANBOXに加入する
                     </a>
                 </div>
 
                 <!-- BOOTH -->
-                <div class="bg-vampire-dark rounded border border-zinc-900 p-8 transition duration-300 hover:border-vampire-green/30 shadow-gothic flex flex-col justify-between">
+                <div class="bg-vampire-dark rounded border border-zinc-900 p-8 transition duration-300 hover:border-vampire-booth/30 shadow-gothic flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <span class="text-xl font-bold font-cinzel text-vampire-green">BOOTH Store</span>
-                            <span class="text-[9px] bg-vampire-green/10 text-vampire-green px-2 py-0.5 rounded border border-vampire-green/20">TOOLS & MERCH</span>
+                            <span class="text-xl font-bold font-cinzel text-vampire-booth">BOOTH Store</span>
+                            <span class="text-[9px] bg-vampire-booth/10 text-vampire-booth px-2 py-0.5 rounded border border-vampire-booth/20">TOOLS & MERCH</span>
                         </div>
                         <h3 class="text-base font-bold text-white mb-3">Principaleka BOOTH</h3>
                         <p class="text-xs text-gray-400 leading-relaxed mb-6">
                             私自身が開発したアバター改変用のUnityツールのオンライン販売や、リアルグッズを通販で入手可能。お気軽に覗いてみてください。
                         </p>
                     </div>
-                    <a href="https://principaleka.booth.pm/" target="_blank" class="block text-center bg-vampire-green/10 hover:bg-vampire-green border border-vampire-green/40 text-vampire-green hover:text-black py-2.5 rounded text-xs font-bold transition duration-300 shadow-neon">
+                    <a href="https://principaleka.booth.pm/" target="_blank" rel="noopener noreferrer" class="block text-center bg-vampire-booth/20 hover:bg-vampire-booth border border-vampire-booth/40 text-vampire-booth hover:text-white py-2.5 rounded text-xs font-bold transition duration-300 shadow-none hover:shadow-[0_0_15px_rgba(153,27,27,0.5)]">
                         BOOTHストアへ
                     </a>
                 </div>
@@ -589,41 +644,8 @@
         </div>
     </section>
 
-    <!-- [セクション 5] Design Sheet Section -->
-    <section id="design-sheet" class="py-24 bg-vampire-dark border-b border-zinc-900 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <div class="absolute top-10 left-10 text-vampire-green text-8xl font-gothic-gothic">Ref</div>
-            <div class="absolute bottom-10 right-10 text-vampire-green text-8xl font-gothic-gothic">Model</div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Swiper Slider Container -->
-            <div class="design-sheet-slider swiper max-w-5xl mx-auto" aria-label="キャラクターデザインシート スライダー">
-                <div class="swiper-wrapper">
-                    <!-- Swiper handles duplication automatically when loop: true is set -->
-                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
-                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/ref_airi.webp" loading="lazy" decoding="async" class="max-h-full max-w-full object-contain" alt="三面図Airi">
-                    </div>
-                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
-                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Lolos_ref.webp" loading="lazy" decoding="async" class="max-h-full max-w-full object-contain" alt="Lolos ref">
-                    </div>
-                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
-                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo.webp" loading="lazy" decoding="async" class="max-h-full max-w-full object-contain" alt="Logo outline">
-                    </div>
-                </div>
-                
-                <!-- Swiper Navigation Buttons -->
-                <div class="swiper-button-prev !text-vampire-green after:!text-xl"></div>
-                <div class="swiper-button-next !text-vampire-green after:!text-xl"></div>
-                
-                <!-- Swiper Pagination -->
-                <div class="swiper-pagination mt-8 !position-relative"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- [セクション 6] Secondary Creation Guidelines Section -->
-    <section id="guidelines" class="py-24 bg-vampire-black">
+    <!-- [セクション 5] Secondary Creation Guidelines Section -->
+    <section id="guidelines" class="content-section py-24 bg-vampire-dark">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-xs text-vampire-green font-bold tracking-widest uppercase mb-2">✦ LAW OF COVEN</h2>
@@ -633,7 +655,7 @@
                 </p>
             </div>
 
-            <div class="bg-vampire-dark border border-zinc-900 rounded p-8 space-y-6 text-xs text-gray-400 leading-relaxed shadow-gothic">
+            <div class="bg-vampire-black border border-zinc-900 rounded p-8 space-y-6 text-xs text-gray-400 leading-relaxed shadow-gothic">
                 <div>
                     <h3 class="text-white font-extrabold text-sm mb-2 flex items-center">
                         <i class="fa-solid fa-brush text-vampire-green mr-2"></i>イラスト・ファンアートについて
@@ -656,8 +678,59 @@
         </div>
     </section>
 
+    <!-- [セクション 6] Design Sheet Section -->
+    <section id="design-sheet" class="content-section py-24 bg-vampire-black border-b border-zinc-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute top-10 left-10 text-vampire-green text-8xl font-gothic-gothic">Ref</div>
+            <div class="absolute bottom-10 right-10 text-vampire-green text-8xl font-gothic-gothic">Model</div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Swiper Slider Container -->
+            <div class="design-sheet-slider swiper max-w-5xl mx-auto" aria-label="キャラクターデザインシート スライダー">
+                <div class="swiper-wrapper">
+                    <!-- 画像3枚のループが途切れないよう、各画像を複数回配置してループを安定させる -->
+                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
+                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/ref_airi.webp" loading="lazy" decoding="async" width="1920" height="1080" class="max-h-full max-w-full object-contain" alt="三面図Airi">
+                    </div>
+                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
+                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Lolos_ref.webp" loading="lazy" decoding="async" width="1920" height="1080" class="max-h-full max-w-full object-contain" alt="Lolos ref">
+                    </div>
+                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
+                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo.webp" loading="lazy" decoding="async" width="1920" height="1080" class="max-h-full max-w-full object-contain" alt="Logo outline">
+                    </div>
+                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
+                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/ref_airi.webp" loading="lazy" decoding="async" width="1920" height="1080" class="max-h-full max-w-full object-contain" alt="三面図Airi">
+                    </div>
+                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
+                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Lolos_ref.webp" loading="lazy" decoding="async" width="1920" height="1080" class="max-h-full max-w-full object-contain" alt="Lolos ref">
+                    </div>
+                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
+                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo.webp" loading="lazy" decoding="async" width="1920" height="1080" class="max-h-full max-w-full object-contain" alt="Logo outline">
+                    </div>
+                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
+                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/ref_airi.webp" loading="lazy" decoding="async" width="1920" height="1080" class="max-h-full max-w-full object-contain" alt="三面図Airi">
+                    </div>
+                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
+                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Lolos_ref.webp" loading="lazy" decoding="async" width="1920" height="1080" class="max-h-full max-w-full object-contain" alt="Lolos ref">
+                    </div>
+                    <div class="swiper-slide bg-white rounded border border-zinc-900 overflow-hidden shadow-gothic aspect-video flex items-center justify-center p-4">
+                        <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo.webp" loading="lazy" decoding="async" width="1920" height="1080" class="max-h-full max-w-full object-contain" alt="Logo outline">
+                    </div>
+                </div>
+                
+                <!-- Swiper Navigation Buttons -->
+                <div class="swiper-button-prev !text-vampire-green after:!text-xl"></div>
+                <div class="swiper-button-next !text-vampire-green after:!text-xl"></div>
+                
+                <!-- Swiper Pagination -->
+                <div class="swiper-pagination mt-8 !position-relative"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- [セクション 7] Contact Section -->
-    <section id="contact" class="py-24 bg-vampire-dark border-t border-zinc-900">
+    <section id="contact" class="hidden content-section py-24 bg-vampire-dark border-t border-zinc-900">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-xs text-vampire-green font-bold tracking-widest uppercase mb-2">✦ COVEN POST</h2>
@@ -708,9 +781,9 @@
     <footer class="bg-vampire-black border-t border-zinc-950 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
             <div class="flex justify-center space-x-6 text-lg text-gray-500">
-                <a href="https://x.com/eureka_td" target="_blank" class="hover:text-vampire-green transition"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://twitch.tv/eureka_td" target="_blank" class="hover:text-vampire-green transition"><i class="fa-brands fa-twitch"></i></a>
-                <a href="https://www.youtube.com/@eureka_td" target="_blank" class="hover:text-vampire-green transition"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://x.com/eureka_td" target="_blank" rel="noopener noreferrer" class="hover:text-vampire-green transition"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://twitch.tv/eureka_td" target="_blank" rel="noopener noreferrer" class="hover:text-vampire-green transition"><i class="fa-brands fa-twitch"></i></a>
+                <a href="https://www.youtube.com/@eureka_td" target="_blank" rel="noopener noreferrer" class="hover:text-vampire-green transition"><i class="fa-brands fa-youtube"></i></a>
             </div>
             
             <p class="text-[10px] text-gray-600 tracking-wider">
@@ -724,15 +797,17 @@
 
     <!-- Simple Interactivity JS -->
     <script>
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         // Header Scroll Effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('main-header');
             if (window.scrollY > 50) {
-                header.classList.add('bg-vampire-black', 'border-b', 'border-vampire-green/40', 'py-1');
+                header.classList.add('bg-vampire-black/95', 'backdrop-blur-md', 'border-b', 'border-vampire-green/20');
             } else {
-                header.classList.remove('bg-vampire-black', 'border-b', 'border-vampire-green/40', 'py-1');
+                header.classList.remove('bg-vampire-black/95', 'backdrop-blur-md', 'border-b', 'border-vampire-green/20');
             }
-        });
+        }, { passive: true });
 
         // Mobile Menu Toggle
         const menuBtn = document.getElementById('mobile-menu-btn');
@@ -774,65 +849,68 @@
         const form = document.getElementById('contact-form');
         const toast = document.getElementById('toast-message');
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            toast.classList.remove('hidden');
-            form.reset();
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 5000);
-        });
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                toast.classList.remove('hidden');
+                form.reset();
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 5000);
+            });
+        }
 
         // Mouse Move Parallax Logic Optimized with requestAnimationFrame
-        const layers = [
-            { id: 'kv-layer-bg', speed: 0.015, el: null },
-            { id: 'kv-layer-02', speed: 0.04, el: null },
-            { id: 'kv-layer-01', speed: 0.025, el: null },
-            { id: 'kv-layer-effect', speed: 0.045, el: null },
-            { id: 'kv-layer-04', speed: 0.055, el: null }
-        ];
+        if (!prefersReducedMotion) {
+            const layers = [
+                { id: 'kv-layer-bg', speed: 0.015, el: null },
+                { id: 'kv-layer-02', speed: 0.04, el: null },
+                { id: 'kv-layer-01', speed: 0.025, el: null },
+                { id: 'kv-layer-effect', speed: 0.045, el: null },
+                { id: 'kv-layer-04', speed: 0.055, el: null }
+            ];
 
-        let targetX = 0;
-        let targetY = 0;
-        let currentX = 0;
-        let currentY = 0;
-        let isTicking = false;
+            let targetX = 0;
+            let targetY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            let isTicking = false;
 
-        document.addEventListener('DOMContentLoaded', () => {
-            layers.forEach(layer => {
-                layer.el = document.getElementById(layer.id);
+            document.addEventListener('DOMContentLoaded', () => {
+                layers.forEach(layer => {
+                    layer.el = document.getElementById(layer.id);
+                });
             });
-        });
 
-        window.addEventListener('mousemove', (e) => {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            targetX = e.clientX - width / 2;
-            targetY = e.clientY - height / 2;
+            window.addEventListener('mousemove', (e) => {
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                targetX = e.clientX - width / 2;
+                targetY = e.clientY - height / 2;
 
-            if (!isTicking) {
-                window.requestAnimationFrame(updateParallax);
-                isTicking = true;
-            }
-        });
-
-        function updateParallax() {
-            // Linear interpolation for smooth easing
-            currentX += (targetX - currentX) * 0.1;
-            currentY += (targetY - currentY) * 0.1;
-
-            layers.forEach(layer => {
-                if (layer.el) {
-                    const x = currentX * layer.speed;
-                    const y = currentY * layer.speed;
-                    layer.el.style.transform = `translate3d(${x}px, ${y}px, 0px)`;
+                if (!isTicking) {
+                    window.requestAnimationFrame(updateParallax);
+                    isTicking = true;
                 }
-            });
+            }, { passive: true });
 
-            if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
-                window.requestAnimationFrame(updateParallax);
-            } else {
-                isTicking = false;
+            function updateParallax() {
+                currentX += (targetX - currentX) * 0.1;
+                currentY += (targetY - currentY) * 0.1;
+
+                layers.forEach(layer => {
+                    if (layer.el) {
+                        const x = currentX * layer.speed;
+                        const y = currentY * layer.speed;
+                        layer.el.style.transform = `translate3d(${x}px, ${y}px, 0px)`;
+                    }
+                });
+
+                if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+                    window.requestAnimationFrame(updateParallax);
+                } else {
+                    isTicking = false;
+                }
             }
         }
 
@@ -842,7 +920,7 @@
             spaceBetween: 20,
             centeredSlides: true,
             loop: true,
-            autoplay: {
+            autoplay: prefersReducedMotion ? false : {
                 delay: 4000,
                 disableOnInteraction: false,
             },
@@ -870,11 +948,14 @@
     <script src="https://player.twitch.tv/js/embed/v1.js"></script>
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", () => {
-          // Fallback for local development and preview environments
           const currentHost = window.location.hostname;
-          const parentDomains = currentHost === "localhost" || currentHost === "127.0.0.1" || !currentHost
-              ? ["localhost", "127.0.0.1"]
-              : [currentHost];
+          const parentDomains = [];
+          if (currentHost) parentDomains.push(currentHost);
+          if (!parentDomains.includes('localhost')) parentDomains.push('localhost');
+          if (!parentDomains.includes('127.0.0.1')) parentDomains.push('127.0.0.1');
+          if (currentHost.includes('google') || currentHost.includes('codepen') || currentHost.includes('webcontainer')) {
+              parentDomains.push(currentHost);
+          }
 
           new Twitch.Player("twitch-embed", {
             channel: "eureka_td",
