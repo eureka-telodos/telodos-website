@@ -181,6 +181,9 @@
         .kv-layer-04 {
             inset: 0;
             z-index: 6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Images */
@@ -207,16 +210,38 @@
             display: block;
         }
 
+        /* Responsive KV adjustments for Mobile */
+        @media (max-width: 768px) {
+            .kv-layer-chara, .kv-layer-effect-container {
+                top: 0;
+                left: -10%; /* 左右10%ずつはみ出す */
+                width: 120%; /* 左右はみ出し分を含めた幅 */
+                height: 100%;
+                justify-content: center !important;
+            }
+            
+            /* キャラクターは中央配置 */
+            .kv-layer-chara {
+                align-items: center !important;
+            }
+            .kv-img-chara {
+                object-fit: contain;
+                object-position: center;
+            }
+
+            /* エフェクトは下部固定 */
+            .kv-layer-effect-container {
+                align-items: flex-end !important;
+            }
+            .kv-img-effect {
+                object-fit: contain;
+                object-position: bottom center;
+            }
+        }
+
         /* Green neon silhouette styling */
         .kv-silhouette-img {
             filter: brightness(0) saturate(100%) invert(58%) sepia(93%) saturate(1519%) hue-rotate(81deg) brightness(109%) contrast(117%) blur(20px) opacity(0.5);
-        }
-
-        /* Title Logo Typography */
-        .kv-title-container {
-            text-align: center;
-            text-shadow: 0 0 10px rgba(10, 5, 12, 0.9), 0 0 30px rgba(57, 255, 20, 0.4);
-            padding: 20px;
         }
 
         /* Scroll indicator */
@@ -273,10 +298,14 @@
 
     <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="main-header">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center group">
-                <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo_outline.webp" alt="Eureka Telodos Logo" width="400" height="135" fetchpriority="high" class="h-[90px] w-auto object-contain drop-shadow-[0_0_8px_rgba(57,255,20,0.5)] transition duration-300 group-hover:brightness-125">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between relative">
+            
+            <!-- Mobile Layout Dummy Spacer -->
+            <div class="w-8 md:hidden"></div>
+
+            <!-- Brand Logo (Centered on mobile, left on desktop) -->
+            <a href="#" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:static md:transform-none flex items-center group z-10">
+                <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo_outline.webp" alt="Eureka Telodos Logo" width="400" height="135" fetchpriority="high" class="h-[70px] md:h-[90px] w-auto object-contain drop-shadow-[0_0_8px_rgba(57,255,20,0.5)] transition duration-300 group-hover:brightness-125">
             </a>
 
             <!-- Desktop Nav Items -->
@@ -302,7 +331,7 @@
             </div>
 
             <!-- Mobile Menu Button -->
-            <div class="md:hidden flex items-center">
+            <div class="md:hidden flex items-center z-10 relative">
                 <button id="mobile-menu-btn" class="text-gray-300 hover:text-vampire-green focus:outline-none" aria-label="Toggle Menu">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
@@ -310,7 +339,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-vampire-dark border-b border-vampire-green/20 px-4 pt-2 pb-6 space-y-4">
+        <div id="mobile-menu" class="hidden md:hidden bg-vampire-dark border-b border-vampire-green/20 px-4 pt-2 pb-6 space-y-4 shadow-gothic">
             <a href="#news" class="block text-gray-300 hover:text-vampire-green font-bold text-lg py-2 border-b border-zinc-900">NEWS</a>
             <a href="#streams" class="block text-gray-300 hover:text-vampire-green font-bold text-lg py-2 border-b border-zinc-900">STREAMS</a>
             <a href="#profile" class="block text-gray-300 hover:text-vampire-green font-bold text-lg py-2 border-b border-zinc-900">PROFILE</a>
@@ -321,7 +350,7 @@
     </header>
 
     <!-- Interactive Parallax Key Visual Section (100vh) -->
-    <section class="kv md:block flex items-center justify-center">
+    <section class="kv">
         <!-- Back Layer: Background Grid & Atmosphere -->
         <div class="kv-layer kv-layer-bg" id="kv-layer-bg">
             <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/bg.webp" width="1920" height="1080" fetchpriority="high" class="kv-img-bg" alt="" aria-hidden="true">
@@ -343,11 +372,9 @@
             <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/effect.webp" width="1920" height="1080" fetchpriority="high" class="kv-img-effect" style="mix-blend-mode: screen; opacity: 0.75;" alt="" aria-hidden="true" onerror="this.onerror=null; this.style.display='none';">
         </div>
 
-        <!-- Layer 04: Title Logo (Front) -->
-        <div class="kv-layer kv-layer-04 w-full" id="kv-layer-04">
-            <div class="kv-title-container select-none w-full max-w-xl mx-auto px-4 pointer-events-none">
-                <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo_outline.webp" alt="Eureka Telodos" width="400" height="135" class="w-full h-auto drop-shadow-[0_0_15px_rgba(57,255,20,0.5)]">
-            </div>
+        <!-- Layer 04: Title Logo (Front - Centered Properly) -->
+        <div class="kv-layer kv-layer-04" id="kv-layer-04">
+            <img src="https://raw.githubusercontent.com/eureka-telodos/telodos-website/main/webp/Logo_outline.webp" alt="Eureka Telodos" width="400" height="135" class="w-[80%] max-w-[280px] md:max-w-[400px] h-auto drop-shadow-[0_0_15px_rgba(57,255,20,0.5)] pointer-events-none select-none">
         </div>
 
         <!-- Scroll Indicator -->
@@ -729,7 +756,7 @@
         </div>
     </section>
 
-    <!-- [セクション 7] Contact Section -->
+    <!-- [セクション 7] Contact Section (非表示) -->
     <section id="contact" class="hidden content-section py-24 bg-vampire-dark border-t border-zinc-900">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
