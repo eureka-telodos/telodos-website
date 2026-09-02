@@ -1,0 +1,152 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { activities } from '../data/site';
+---
+
+<section class="section section--deep activity-section" id="activity">
+  <div class="container">
+    <SectionHeading
+      eyebrow="STREAMS & CREATION"
+      title="Into the Night"
+      description="リアルタイムで一緒に過ごす夜と、あとから何度でも見られる作品。それぞれの入口をまとめています。"
+    />
+
+    <div class="activity-list">
+      {activities.map((activity) => (
+        <article class:list={['activity-card', `activity-card--${activity.tone}`]}>
+          <span class="activity-card__number">{activity.index}</span>
+          <div class="activity-card__content">
+            <p class="activity-card__kicker">{activity.kicker}</p>
+            <h3>{activity.title}</h3>
+            <p>{activity.description}</p>
+            <small>{activity.note}</small>
+          </div>
+          <a href={activity.href} target="_blank" rel="noreferrer">
+            {activity.linkLabel}<span aria-hidden="true">↗</span>
+          </a>
+          <span class="activity-card__watermark" aria-hidden="true">{activity.id === 'twitch' ? 'LIVE' : 'PLAY'}</span>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .activity-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .activity-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 12% 20%, rgb(57 255 20 / 6%), transparent 32%),
+      linear-gradient(115deg, transparent 0 48%, rgb(255 255 255 / 1.5%) 48% 48.1%, transparent 48.1%);
+    pointer-events: none;
+  }
+
+  .activity-list {
+    margin-top: clamp(40px, 6vw, 72px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .activity-card {
+    position: relative;
+    min-height: 390px;
+    padding: clamp(28px, 4vw, 52px);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    background:
+      linear-gradient(145deg, rgb(22 14 28 / 92%), rgb(9 7 12 / 98%)),
+      var(--color-panel);
+  }
+
+  .activity-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background: var(--card-accent);
+    box-shadow: 0 0 26px var(--card-accent);
+  }
+
+  .activity-card--green { --card-accent: #39ff14; }
+  .activity-card--red { --card-accent: #ff3c68; }
+
+  .activity-card__number {
+    color: var(--card-accent);
+    font: 600 0.62rem/1 var(--font-display);
+    letter-spacing: 0.14em;
+  }
+
+  .activity-card__content {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    max-width: 460px;
+  }
+
+  .activity-card__kicker {
+    color: var(--card-accent) !important;
+    font: 600 0.6rem/1 var(--font-display) !important;
+    letter-spacing: 0.16em;
+  }
+
+  .activity-card h3 {
+    margin-top: 16px;
+    color: var(--color-text-strong);
+    font: 600 clamp(2rem, 5vw, 4rem)/0.95 var(--font-display);
+  }
+
+  .activity-card__content > p:not(.activity-card__kicker) {
+    margin-top: 24px;
+    color: var(--color-text-muted);
+    font-size: 0.84rem;
+    line-height: 2;
+  }
+
+  .activity-card small {
+    margin-top: 18px;
+    display: block;
+    color: var(--color-text-faint);
+    font-size: 0.68rem;
+  }
+
+  .activity-card > a {
+    position: relative;
+    z-index: 3;
+    width: fit-content;
+    min-height: 44px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    color: var(--color-text);
+    border: 1px solid color-mix(in srgb, var(--card-accent) 42%, transparent);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .activity-card > a span { color: var(--card-accent); }
+
+  .activity-card__watermark {
+    position: absolute;
+    right: -0.08em;
+    bottom: -0.13em;
+    color: color-mix(in srgb, var(--card-accent) 4%, transparent);
+    font: 700 clamp(6rem, 13vw, 11rem)/1 var(--font-display);
+    letter-spacing: -0.08em;
+    pointer-events: none;
+  }
+
+  @media (max-width: 760px) {
+    .activity-list { grid-template-columns: 1fr; }
+    .activity-card { min-height: 350px; }
+  }
+</style>
