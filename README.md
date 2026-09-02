@@ -38,10 +38,13 @@ npm run validate
 
 ## 公開設定
 
-Cloudflare Pagesを使用する場合は、次の設定にします。
+Cloudflare Workers Buildsでは、次の設定にします。
 
 - Build command: `npm run build`
-- Build output directory: `dist`
+- Deploy command: `npx wrangler deploy`
+- Version command: `npx wrangler versions upload`
 - Node.js version: `24`
+
+静的ファイルの出力先は `dist/` です。`wrangler.jsonc` も同じ出力先を参照します。
 
 現在の本番サイトを守るため、変更は作業ブランチからPull Requestを作り、プレビュー確認後に `main` へマージします。
