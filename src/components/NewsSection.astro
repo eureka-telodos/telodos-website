@@ -1,6 +1,8 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import { news } from '../data/news';
+import { getNews } from '../lib/microcms';
+
+const news = await getNews();
 ---
 
 <section class="section news-section" id="news">
