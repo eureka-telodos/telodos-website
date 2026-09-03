@@ -57,14 +57,15 @@ import { news } from '../data/news';
   .news-grid {
     margin-top: clamp(40px, 6vw, 72px);
     display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(300px, 5fr);
+    grid-template-columns: minmax(0, 1.35fr) repeat(2, minmax(0, 1fr));
     gap: 18px;
+    align-items: stretch;
   }
 
   .news-card {
     min-width: 0;
-    display: grid;
-    grid-template-columns: minmax(150px, 42%) 1fr;
+    display: flex;
+    flex-direction: column;
     color: var(--color-text);
     border: 1px solid var(--color-line);
     background: linear-gradient(145deg, rgb(20 14 25 / 92%), rgb(11 8 14 / 96%));
@@ -77,20 +78,13 @@ import { news } from '../data/news';
     border-color: var(--color-line-accent);
   }
 
-  .news-card--featured {
-    grid-row: span 2;
-    grid-template-columns: 1fr;
-  }
-
   .news-card__media {
     position: relative;
-    min-height: 100%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    flex: none;
     overflow: hidden;
     background: var(--color-panel-raised);
-  }
-
-  .news-card--featured .news-card__media {
-    aspect-ratio: 16 / 9;
   }
 
   .news-card__media::after {
@@ -123,6 +117,7 @@ import { news } from '../data/news';
   }
 
   .news-card__body {
+    flex: 1;
     padding: clamp(20px, 2.8vw, 34px);
     display: flex;
     flex-direction: column;
@@ -172,13 +167,13 @@ import { news } from '../data/news';
   .news-card__link i { color: var(--color-accent); font-style: normal; }
 
   @media (max-width: 900px) {
-    .news-grid { grid-template-columns: 1fr; }
-    .news-card--featured { grid-row: auto; }
+    .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .news-card--featured { grid-column: 1 / -1; }
   }
 
   @media (max-width: 580px) {
-    .news-card { grid-template-columns: 1fr; }
-    .news-card:not(.news-card--featured) .news-card__media { aspect-ratio: 16 / 8.8; }
+    .news-grid { grid-template-columns: 1fr; }
+    .news-card--featured { grid-column: auto; }
     .news-card:not(.news-card--featured) p { -webkit-line-clamp: 3; }
   }
 </style>
