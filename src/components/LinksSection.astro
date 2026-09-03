@@ -19,8 +19,7 @@ import { officialLinks } from '../data/site';
             <span>{String(index + 1).padStart(2, '0')}</span>
             <small>{item.category}</small>
           </div>
-          <p class="official-link__label">{item.label}</p>
-          <h3>{item.title}</h3>
+          <h3 class="official-link__label">{item.label}</h3>
           <p class="official-link__description">{item.description}</p>
           <a href={item.href} target="_blank" rel="noreferrer">
             {item.cta}<span aria-hidden="true">↗</span>
@@ -81,18 +80,12 @@ import { officialLinks } from '../data/site';
   .official-link__label {
     margin-top: 72px;
     color: var(--link-accent);
-    font: 600 0.7rem/1 var(--font-display);
-    letter-spacing: 0.1em;
-  }
-
-  .official-link h3 {
-    margin-top: 14px;
-    color: var(--color-text-strong);
-    font-size: clamp(1.08rem, 2vw, 1.42rem);
+    font: 700 clamp(2rem, 3.5vw, 3.25rem)/1 var(--font-display);
+    letter-spacing: -0.035em;
   }
 
   .official-link__description {
-    margin-top: 18px;
+    margin-top: 24px;
     color: var(--color-text-muted);
     font-size: 0.76rem;
     line-height: 1.95;
