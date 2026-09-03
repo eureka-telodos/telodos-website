@@ -16,7 +16,7 @@ import { guidelines } from '../data/guidelines';
 
     <div class="guidelines-list">
       {guidelines.map((item, index) => (
-        <details class:list={['guideline', 'important' in item && item.important && 'guideline--important']} open={index === 0}>
+        <details class="guideline" open={index === 0}>
           <summary>
             <span class="guideline__index">{String(index + 1).padStart(2, '0')}</span>
             <span class="guideline__title"><small>{item.label}</small>{item.title}</span>
@@ -87,8 +87,6 @@ import { guidelines } from '../data/guidelines';
     font: 600 0.52rem/1 var(--font-display);
     letter-spacing: 0.14em;
   }
-
-  .guideline--important .guideline__title small { color: #ff718a; }
 
   .guideline summary i {
     position: relative;
