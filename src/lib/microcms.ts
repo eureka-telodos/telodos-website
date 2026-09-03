@@ -1,5 +1,6 @@
 import { news as fallbackNews, type NewsItem } from '../data/news';
 
+// NEWS is fetched from microCMS during the Astro production build.
 const serviceDomain = 'etdnews';
 const endpoint = 'news';
 
