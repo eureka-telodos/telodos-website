@@ -1,0 +1,79 @@
+---
+const links = [
+  { index: '01', label: 'WATCH LIVE', text: 'Twitch', href: 'https://twitch.tv/eureka_td', external: true },
+  { index: '02', label: 'LATEST VIDEOS', text: 'YouTube', href: 'https://www.youtube.com/@eureka_td', external: true },
+  { index: '03', label: 'FAN COMMUNITY', text: 'Fantia / FANBOX', href: '#links' },
+  { index: '04', label: 'TOOLS & MERCH', text: 'BOOTH', href: 'https://principaleka.booth.pm/', external: true },
+];
+---
+
+<nav class="portal-bar" aria-label="公式コンテンツへのショートカット">
+  {links.map((item) => (
+    <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noreferrer' : undefined}>
+      <span class="portal-bar__index">{item.index}</span>
+      <span><small>{item.label}</small>{item.text}</span>
+      <i aria-hidden="true">↗</i>
+    </a>
+  ))}
+</nav>
+
+<style>
+  .portal-bar {
+    width: min(100% - 40px, var(--container-wide));
+    margin: -1px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--color-line);
+    background: var(--color-panel);
+  }
+
+  .portal-bar a {
+    min-height: 94px;
+    padding: 20px 22px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    color: var(--color-text);
+    border-right: 1px solid var(--color-line);
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+
+  .portal-bar a:last-child { border-right: 0; }
+  .portal-bar a:hover { color: var(--color-accent); background: var(--color-panel-raised); }
+
+  .portal-bar__index {
+    color: var(--color-accent);
+    font: 600 0.6rem/1 var(--font-display);
+  }
+
+  .portal-bar a > span:nth-child(2) {
+    display: grid;
+    gap: 6px;
+    font: 600 0.9rem/1.2 var(--font-display);
+    letter-spacing: 0.04em;
+  }
+
+  .portal-bar small {
+    color: var(--color-text-faint);
+    font-size: 0.52rem;
+    letter-spacing: 0.16em;
+  }
+
+  .portal-bar i {
+    color: var(--color-text-faint);
+    font-style: normal;
+  }
+
+  @media (max-width: 860px) {
+    .portal-bar { grid-template-columns: 1fr 1fr; }
+    .portal-bar a:nth-child(2) { border-right: 0; }
+    .portal-bar a:nth-child(-n + 2) { border-bottom: 1px solid var(--color-line); }
+  }
+
+  @media (max-width: 520px) {
+    .portal-bar { width: calc(100% - 28px); grid-template-columns: 1fr; }
+    .portal-bar a { min-height: 76px; border-right: 0; border-bottom: 1px solid var(--color-line); }
+    .portal-bar a:last-child { border-bottom: 0; }
+  }
+</style>

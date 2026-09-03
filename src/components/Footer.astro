@@ -1,0 +1,77 @@
+---
+import { navigation, site, socialLinks } from '../data/site';
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__main">
+    <a class="site-footer__brand" href="#top">
+      <img src="/images/brand/logo-outline.webp" alt={site.name} width="1920" height="1080" loading="lazy" />
+    </a>
+    <nav aria-label="フッターナビゲーション">
+      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <div class="site-footer__socials">
+      {socialLinks.map((item) => <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>)}
+    </div>
+  </div>
+  <div class="container site-footer__bottom">
+    <p>© 2026 Eureka Telodos Official.</p>
+    <a href="#top">BACK TO TOP ↑</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 72px 0 28px;
+    border-top: 1px solid var(--color-line);
+    background: #050407;
+  }
+
+  .site-footer__main {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    align-items: center;
+    gap: 42px;
+  }
+
+  .site-footer__brand {
+    width: 164px;
+    height: 90px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .site-footer__brand img { width: 188px; max-width: none; }
+
+  .site-footer nav,
+  .site-footer__socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 28px;
+  }
+
+  .site-footer nav a,
+  .site-footer__socials a,
+  .site-footer__bottom {
+    color: var(--color-text-faint);
+    font: 600 0.58rem/1 var(--font-display);
+    letter-spacing: 0.12em;
+  }
+
+  .site-footer a:hover { color: var(--color-accent); }
+
+  .site-footer__bottom {
+    margin-top: 54px;
+    padding-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--color-line);
+  }
+
+  @media (max-width: 780px) {
+    .site-footer__main { grid-template-columns: 1fr; }
+    .site-footer__brand { margin-left: -24px; }
+    .site-footer__socials { padding-top: 16px; }
+  }
+</style>

@@ -1,0 +1,112 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { officialLinks } from '../data/site';
+---
+
+<section class="section section--deep links-section" id="links">
+  <div class="container">
+    <SectionHeading
+      eyebrow="OFFICIAL PORTS"
+      title="Join the Coven"
+      description="応援、限定コンテンツ、制作ツールとグッズ。目的に合った公式ページを選べます。"
+      align="center"
+    />
+
+    <div class="official-links">
+      {officialLinks.map((item, index) => (
+        <article class:list={['official-link', `official-link--${item.tone}`]}>
+          <div class="official-link__topline">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <small>{item.category}</small>
+          </div>
+          <h3 class="official-link__label">{item.label}</h3>
+          <p class="official-link__description">{item.description}</p>
+          <a href={item.href} target="_blank" rel="noreferrer">
+            {item.cta}<span aria-hidden="true">↗</span>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .official-links {
+    margin-top: clamp(42px, 6vw, 76px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .official-link {
+    --link-accent: var(--color-accent);
+    position: relative;
+    min-height: 390px;
+    padding: clamp(26px, 3.2vw, 40px);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-line);
+    background: linear-gradient(155deg, color-mix(in srgb, var(--link-accent) 6%, var(--color-panel)), var(--color-bg));
+    overflow: hidden;
+  }
+
+  .official-link::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 2px;
+    background: var(--link-accent);
+    transform: scaleX(0.16);
+    transform-origin: left;
+    transition: transform 300ms ease;
+  }
+
+  .official-link:hover::after { transform: scaleX(1); }
+  .official-link--fantia { --link-accent: #55f2ad; }
+  .official-link--fanbox { --link-accent: #f2ac45; }
+  .official-link--booth { --link-accent: #ff596e; }
+
+  .official-link__topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--link-accent);
+    font: 600 0.6rem/1 var(--font-display);
+    letter-spacing: 0.14em;
+  }
+
+  .official-link__topline small { color: var(--color-text-faint); font: inherit; }
+
+  .official-link__label {
+    margin-top: 72px;
+    color: var(--link-accent);
+    font: 700 clamp(2rem, 3.5vw, 3.25rem)/1 var(--font-display);
+    letter-spacing: -0.035em;
+  }
+
+  .official-link__description {
+    margin-top: 24px;
+    color: var(--color-text-muted);
+    font-size: 0.76rem;
+    line-height: 1.95;
+  }
+
+  .official-link > a {
+    margin-top: auto;
+    padding-top: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--color-text);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .official-link > a span { color: var(--link-accent); }
+
+  @media (max-width: 900px) {
+    .official-links { grid-template-columns: 1fr; }
+    .official-link { min-height: 300px; }
+    .official-link__label { margin-top: 44px; }
+  }
+</style>
