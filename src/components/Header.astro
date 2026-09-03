@@ -39,6 +39,7 @@ import { navigation, socialLinks } from '../data/site';
   const header = document.querySelector<HTMLElement>('[data-site-header]');
   const menuButton = header?.querySelector<HTMLButtonElement>('.site-header__menu');
   const mobileNavigation = header?.querySelector<HTMLElement>('#mobile-navigation');
+  const desktopMedia = window.matchMedia('(min-width: 961px)');
 
   const closeMenu = () => {
     if (!menuButton || !mobileNavigation) return;
@@ -56,6 +57,7 @@ import { navigation, socialLinks } from '../data/site';
   });
 
   mobileNavigation?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  desktopMedia.addEventListener('change', (event) => event.matches && closeMenu());
   window.addEventListener('keydown', (event) => event.key === 'Escape' && closeMenu());
   window.addEventListener(
     'scroll',
@@ -101,6 +103,7 @@ import { navigation, socialLinks } from '../data/site';
 
   .site-header__brand img {
     width: 176px;
+    height: auto;
     max-width: none;
     filter: drop-shadow(0 0 10px rgb(57 255 20 / 24%));
   }
@@ -204,11 +207,13 @@ import { navigation, socialLinks } from '../data/site';
 
     .mobile-navigation {
       position: fixed;
-      inset: var(--header-height) 0 auto;
-      min-height: calc(100dvh - var(--header-height));
+      inset: var(--header-height) 0 0;
+      min-height: 0;
       padding: 34px max(24px, calc((100vw - var(--container)) / 2));
       display: grid;
       align-content: space-between;
+      overflow-y: auto;
+      overscroll-behavior: contain;
       background: rgb(8 6 11 / 97%);
     }
 
