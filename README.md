@@ -40,6 +40,7 @@ npm run validate
 
 Cloudflare Workers Buildsでは、次の設定にします。
 
+- Root directory: `/`
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy`
 - Version command: `npx wrangler versions upload`
