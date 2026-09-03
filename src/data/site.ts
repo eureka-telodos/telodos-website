@@ -92,7 +92,7 @@ export const officialLinks = [
     tone: 'fantia',
   },
   {
-    label: 'Pixiv FANBOX',
+    label: 'FANBOX',
     category: 'PORTRAITS',
     title: 'FANBOX出張版',
     description:
@@ -102,7 +102,7 @@ export const officialLinks = [
     tone: 'fanbox',
   },
   {
-    label: 'BOOTH Store',
+    label: 'BOOTH',
     category: 'TOOLS & MERCH',
     title: 'Principaleka BOOTH',
     description:
