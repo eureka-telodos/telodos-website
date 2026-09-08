@@ -1,4 +1,4 @@
-import { publishedVideos } from './videos';
+import { publishedVideos, previewVideos } from './videos';
 
 export type NavigationItem = {
   label: string;
@@ -28,7 +28,7 @@ export const navigation: NavigationItem[] = [
   { label: 'LINKS', href: '#links' },
   { label: 'GUIDELINES', href: '#guidelines' },
   { label: 'DESIGN', href: '#design' },
-  ...(publishedVideos.length ? [{ label: 'VIDEOS', href: '#videos' }] : []),
+  ...(publishedVideos.length || previewVideos ? [{ label: 'VIDEOS', href: '#videos' }] : []),
   { label: 'CONTACT', href: '#contact' },
 ];
 

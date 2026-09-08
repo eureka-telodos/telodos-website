@@ -8,7 +8,7 @@ Astroで静的HTMLを生成しています。掲載内容と画面の部品を�
 
 | 更新内容 | ファイル |
 | --- | --- |
-| ニュース | microCMS の `etdnews` → `news`（ローカル用データは `src/data/news.ts`） |
+| ニュース | microCMS の `etdnews` → `news` |
 | 初めての方へ・紹介動画 | `src/data/videos.ts` |
 | プロフィール・SNS・公式リンク | `src/data/site.ts` |
 | ガイドライン | `src/data/guidelines.ts` |
@@ -26,6 +26,8 @@ ChatGPTへ依頼するときは、「ニュースにこの内容を追加して�
 - CMS変更の反映には再ビルドが必要です。Webhookの設定はCloudflareとmicroCMSの管理画面で行います。
 - `src/data/videos.ts` の `featuredVideos` に、動画の `title`・`description`・公開済みYouTube動画の `youtubeId`（11文字）を追加すると「初めての方へ」とVIDEOSナビが表示されます。空の間は見出し・余白・ナビごと出力しません。追加後に再ビルドが必要です。
 - 紹介動画は16:9です。縦型ツール紹介のレイアウトは別途相談してから追加します。
+- 配置確認用の動画枠は `WORKERS_CI_BRANCH=feat/news-timeline-contact` のビルドのみ表示されます。mainでは表示されません。動画の実データはまだ未登録です。
+- APIキーがないプレビューでは接続設定待ちを表示し、古いローカル記事に戻しません。CloudflareのmainビルドではAPIキー未設定もエラーにします。キーはWorkersの実行時設定とは別に、Build variables and secretsへ設定してください。
 - 問い合わせ先は `src/data/site.ts` の `contact`。XプロフィールからDMを送る案内です。受信できるDMの設定はX側で確認してください。
 - Xタイムラインは公式ウィジェットです。スマホは折りたたみ、PCは展開状態。外部スクリプトを読み込めない場合にもXへのリンクは残ります。
 

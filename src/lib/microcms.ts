@@ -1,4 +1,6 @@
-import { news as fallbackNews, type NewsItem } from '../data/news';
+import type { NewsItem } from '../data/news';
+
+export const newsConfigured = Boolean(import.meta.env.MICROCMS_API_KEY || process.env.MICROCMS_API_KEY);
 
 // NEWS is fetched from microCMS during the Astro production build.
 const serviceDomain = 'etdnews';
@@ -34,11 +36,14 @@ const normalizeCategory = (value?: string | string[]) => {
 };
 
 const loadNews = async (): Promise<NewsItem[]> => {
-  const apiKey = import.meta.env.MICROCMS_API_KEY;
+  const apiKey = import.meta.env.MICROCMS_API_KEY || process.env.MICROCMS_API_KEY;
 
   if (!apiKey) {
-    console.warn('MICROCMS_API_KEY is not configured. Using local news data.');
-    return fallbackNews;
+    if (process.env.WORKERS_CI_BRANCH === 'main') {
+      throw new Error('MICROCMS_API_KEY is missing from the production build environment.');
+    }
+    console.warn('MICROCMS_API_KEY is missing. Preview news is unavailable; no legacy news will be shown.');
+    return [];
   }
 
   try {
