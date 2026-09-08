@@ -4,17 +4,17 @@ import { navigation, socialLinks } from '../data/site';
 
 <header class="site-header" data-site-header>
   <div class="site-header__inner">
-    <a class="site-header__brand" href="#top" aria-label="ページ先頭へ">
+    <a class="site-header__brand" href="/#top" aria-label="ホームへ">
       <img src="/images/brand/logo-outline.webp" alt="ユリーカ・ティロドス" width="1920" height="1080" />
     </a>
 
     <nav class="site-header__nav" aria-label="メインナビゲーション">
-      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+      {navigation.map((item) => <a href={`/${item.href}`}>{item.label}</a>)}
     </nav>
 
     <div class="site-header__actions">
       <a class="site-header__live" href="https://twitch.tv/eureka_td" target="_blank" rel="noreferrer">
-        <span aria-hidden="true"></span>ON AIR
+        Twitch ↗
       </a>
       <button class="site-header__menu" type="button" aria-expanded="false" aria-controls="mobile-navigation">
         <span></span><span></span>
@@ -26,7 +26,7 @@ import { navigation, socialLinks } from '../data/site';
   <div class="mobile-navigation" id="mobile-navigation" hidden>
     <nav aria-label="モバイルナビゲーション">
       {navigation.map((item, index) => (
-        <a href={item.href}><span>{String(index + 1).padStart(2, '0')}</span>{item.label}</a>
+        <a href={`/${item.href}`}><span>{String(index + 1).padStart(2, '0')}</span>{item.label}</a>
       ))}
     </nav>
     <div class="mobile-navigation__socials">
@@ -39,7 +39,7 @@ import { navigation, socialLinks } from '../data/site';
   const header = document.querySelector<HTMLElement>('[data-site-header]');
   const menuButton = header?.querySelector<HTMLButtonElement>('.site-header__menu');
   const mobileNavigation = header?.querySelector<HTMLElement>('#mobile-navigation');
-  const desktopMedia = window.matchMedia('(min-width: 961px)');
+  const desktopMedia = window.matchMedia('(min-width: 1201px)');
 
   const closeMenu = () => {
     if (!menuButton || !mobileNavigation) return;
@@ -156,7 +156,7 @@ import { navigation, socialLinks } from '../data/site';
     display: none;
   }
 
-  @media (max-width: 960px) {
+  @media (max-width: 1200px) {
     .site-header__inner {
       width: min(100% - 28px, var(--container-wide));
       grid-template-columns: 1fr auto 1fr;

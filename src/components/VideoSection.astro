@@ -1,0 +1,35 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { publishedVideos } from '../data/videos';
+---
+
+{publishedVideos.length > 0 && (
+  <section class="section" id="videos">
+    <div class="container">
+      <SectionHeading eyebrow="MEET EUREKA" title="First Visit" />
+      <div class="videos">
+        {publishedVideos.map((video) => (
+          <article>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
+              title={video.title} loading="lazy" allowfullscreen
+              allow="encrypted-media; picture-in-picture; fullscreen"
+              referrerpolicy="strict-origin-when-cross-origin"
+            />
+            <h3>{video.title}</h3>
+            <p>{video.description}</p>
+            <a href={`https://www.youtube.com/watch?v=${video.youtubeId}`} target="_blank" rel="noreferrer">YouTubeで見る ↗</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .videos { display: grid; gap: 40px; margin-top: 40px; }
+  iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--color-line); }
+  h3 { margin-top: 20px; }
+  p { margin-block: 12px; color: var(--color-text-muted); }
+  a { color: var(--color-accent); }
+</style>

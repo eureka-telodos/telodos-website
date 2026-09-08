@@ -7,10 +7,25 @@ interface Props {
 }
 
 const { eyebrow, title, description, align = 'left' } = Astro.props;
+const subtitles: Record<string, string> = {
+  'Latest Update': 'お知らせ・最近の活動',
+  'Into the Night': '配信・動画',
+  'Character Profile': 'プロフィール',
+  'Join the Coven': 'ファンクラブ・ショップ',
+  'Guidelines': '活動ガイドライン',
+  'Design Archive': '公式デザイン資料',
+  'First Visit': '初めての方へ',
+  'Contact': 'お問い合わせ',
+};
 ---
 
 <header class:list={['section-heading', `section-heading--${align}`]}>
   <p class="section-heading__eyebrow"><span aria-hidden="true">✦</span>{eyebrow}</p>
   <h2>{title}</h2>
+  {subtitles[title] && <p class="section-heading__subtitle">{subtitles[title]}</p>}
   {description && <p class="section-heading__description">{description}</p>}
 </header>
+
+<style>
+  .section-heading__subtitle { margin-top: 16px; color: var(--color-accent); font-size: 1rem; }
+</style>

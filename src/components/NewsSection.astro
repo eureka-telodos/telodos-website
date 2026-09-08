@@ -1,18 +1,24 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import { getNews } from '../lib/microcms';
+import type { NewsItem } from '../data/news';
+import XTimeline from './XTimeline.astro';
 
-const news = await getNews();
+interface Props { items?: NewsItem[]; archive?: boolean; }
+const { items, archive = false } = Astro.props;
+const news = items ?? await getNews();
 ---
 
 <section class="section news-section" id="news">
   <div class="container">
-    <SectionHeading
+    {!archive && <SectionHeading
       eyebrow="LATEST NEWS & LOG"
       title="Latest Update"
       description="活動のお知らせ、記念日、新しい挑戦。夜の記録を新しい順に届けます。"
-    />
+    />}
 
+    <div class:list={['updates-layout', archive && 'updates-layout--archive']}>
+    <div>
     <div class="news-grid">
       {news.map((item, index) => {
         const Tag = item.href ? 'a' : 'article';
@@ -37,6 +43,11 @@ const news = await getNews();
         );
       })}
     </div>
+    {news.length === 0 && <p class="news-empty">現在、公開中のお知らせはありません。</p>}
+    {!archive && <a class="news-more" href="/news/">もっと見る — お知らせ一覧 →</a>}
+    </div>
+    {!archive && <XTimeline />}
+    </div>
   </div>
 </section>
 
@@ -57,12 +68,20 @@ const news = await getNews();
   }
 
   .news-grid {
-    margin-top: clamp(40px, 6vw, 72px);
     display: grid;
-    grid-template-columns: minmax(0, 1.35fr) repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
     align-items: stretch;
   }
+
+  .updates-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 28px; margin-top: 48px; }
+  .updates-layout > div { min-width: 0; }
+  .updates-layout--archive { display: block; margin-top: 0; }
+  .news-card--featured { grid-column: 1 / -1; }
+  .updates-layout--archive .news-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .updates-layout--archive .news-card--featured { grid-column: auto; }
+  .news-more { display: inline-block; margin-top: 28px; padding: 14px 20px; border: 1px solid var(--color-accent-dim); color: var(--color-accent); }
+  .news-empty { padding-block: 32px; }
 
   .news-card {
     min-width: 0;
@@ -114,7 +133,7 @@ const news = await getNews();
     padding: 7px 9px;
     color: var(--color-bg);
     background: var(--color-accent);
-    font: 700 0.52rem/1 var(--font-display);
+    font: 700 0.875rem/1.4 var(--font-body);
     letter-spacing: 0.12em;
   }
 
@@ -130,7 +149,7 @@ const news = await getNews();
 
   .news-card time {
     color: var(--color-accent);
-    font: 600 0.58rem/1 var(--font-display);
+    font: 600 0.875rem/1.4 var(--font-display);
     letter-spacing: 0.12em;
   }
 
@@ -147,7 +166,7 @@ const news = await getNews();
   .news-card p {
     margin-top: 12px;
     color: var(--color-text-muted);
-    font-size: 0.78rem;
+    font-size: 1rem;
     line-height: 1.9;
   }
 
@@ -157,6 +176,8 @@ const news = await getNews();
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .updates-layout--archive .news-card p { display: block; overflow: visible; }
+  .updates-layout--archive .news-card h3 { font-size: 1.2rem; }
 
   .news-card__link {
     margin-top: auto;
@@ -169,11 +190,14 @@ const news = await getNews();
   .news-card__link i { color: var(--color-accent); font-style: normal; }
 
   @media (max-width: 900px) {
+    .updates-layout { grid-template-columns: 1fr; }
+    .updates-layout--archive .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .news-card--featured { grid-column: 1 / -1; }
   }
 
   @media (max-width: 580px) {
+    .updates-layout--archive .news-grid { grid-template-columns: 1fr; }
     .news-grid { grid-template-columns: 1fr; }
     .news-card--featured { grid-column: auto; }
     .news-card:not(.news-card--featured) p { -webkit-line-clamp: 3; }

@@ -4,11 +4,11 @@ import { navigation, site, socialLinks } from '../data/site';
 
 <footer class="site-footer">
   <div class="container site-footer__main">
-    <a class="site-footer__brand" href="#top">
+    <a class="site-footer__brand" href="/#top">
       <img src="/images/brand/logo-outline.webp" alt={site.name} width="1920" height="1080" loading="lazy" />
     </a>
     <nav aria-label="フッターナビゲーション">
-      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+      {navigation.map((item) => <a href={`/${item.href}`}>{item.label}</a>)}
     </nav>
     <div class="site-footer__socials">
       {socialLinks.map((item) => <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>)}
@@ -16,7 +16,7 @@ import { navigation, site, socialLinks } from '../data/site';
   </div>
   <div class="container site-footer__bottom">
     <p>© 2026 Eureka Telodos Official.</p>
-    <a href="#top">BACK TO TOP ↑</a>
+    <a href="/#top">BACK TO TOP ↑</a>
   </div>
 </footer>
 

@@ -1,3 +1,5 @@
+import { publishedVideos } from './videos';
+
 export type NavigationItem = {
   label: string;
   href: string;
@@ -26,7 +28,15 @@ export const navigation: NavigationItem[] = [
   { label: 'LINKS', href: '#links' },
   { label: 'GUIDELINES', href: '#guidelines' },
   { label: 'DESIGN', href: '#design' },
+  ...(publishedVideos.length ? [{ label: 'VIDEOS', href: '#videos' }] : []),
+  { label: 'CONTACT', href: '#contact' },
 ];
+
+export const contact = {
+  handle: '@eureka_td',
+  href: 'https://x.com/eureka_td',
+  description: 'お仕事・コラボ・掲載についてのご相談は、X（@eureka_td）のDMへご連絡ください。',
+} as const;
 
 export const socialLinks: ExternalLink[] = [
   { label: 'X', href: 'https://x.com/eureka_td' },
