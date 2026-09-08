@@ -1,46 +1,19 @@
 <aside class="timeline" aria-labelledby="timeline-heading">
   <h3 id="timeline-heading">X Timeline <span>日々の投稿</span></h3>
   <a class="timeline-link" href="https://x.com/eureka_td" target="_blank" rel="noreferrer">@eureka_td — Xで見る ↗</a>
-  <details data-x-timeline>
-    <summary>タイムラインを表示・閉じる</summary>
     <div class="timeline-feed">
       <a class="twitter-timeline" data-height="600" data-theme="dark" data-dnt="true" href="https://twitter.com/eureka_td">@eureka_tdの投稿をXで見る</a>
     </div>
-  </details>
   <p>表示されない場合は「Xで見る」からご覧ください。</p>
 </aside>
 
-<script>
-  const timeline = document.querySelector<HTMLDetailsElement>('[data-x-timeline]');
-  const loadTimeline = () => {
-    if (!timeline?.open || document.getElementById('x-widgets')) return;
-    const script = document.createElement('script');
-    script.id = 'x-widgets';
-    script.src = 'https://platform.twitter.com/widgets.js';
-    script.async = true;
-    document.head.append(script);
-  };
-  timeline?.addEventListener('toggle', loadTimeline);
-  if (timeline && window.matchMedia('(min-width: 901px)').matches) {
-    timeline.open = true;
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          loadTimeline();
-          observer.disconnect();
-        }
-      });
-      observer.observe(timeline);
-    } else loadTimeline();
-  }
-</script>
+<script is:inline async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <style>
   .timeline { min-width: 0; align-self: start; padding: 22px; border: 1px solid var(--color-line); background: var(--color-panel); }
   h3 { font: 600 1.3rem/1.6 var(--font-display); }
   h3 span { display: block; font: 400 0.875rem/1.7 var(--font-body); color: var(--color-text-muted); }
   .timeline-link { display: inline-block; margin-block: 16px; color: var(--color-accent); overflow-wrap: anywhere; }
-  summary { cursor: pointer; padding-block: 12px; font-size: 0.875rem; }
   .timeline-feed { max-height: 600px; overflow: auto; }
   .twitter-timeline { display: block; padding-block: 20px; }
   p { margin-top: 16px; font-size: 0.875rem; color: var(--color-text-muted); }
