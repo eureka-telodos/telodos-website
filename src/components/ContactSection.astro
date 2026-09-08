@@ -1,0 +1,15 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { contact } from '../data/site';
+---
+<section class="section section--deep" id="contact">
+  <div class="container">
+    <SectionHeading eyebrow="GET IN TOUCH" title="Contact" description={contact.description} />
+    <a class="contact-link" href={contact.href} target="_blank" rel="noreferrer">Xのプロフィールを開く — {contact.handle} ↗</a>
+    <p class="contact-note">プロフィールのメッセージボタンからDMをお送りください。Xへのログインが必要です。</p>
+  </div>
+</section>
+<style>
+  .contact-link { display: inline-block; margin-top: 32px; padding: 18px 22px; border: 1px solid var(--color-accent-dim); color: var(--color-accent); overflow-wrap: anywhere; }
+  .contact-note { margin-top: 16px; color: var(--color-text-muted); font-size: 0.875rem; }
+</style>

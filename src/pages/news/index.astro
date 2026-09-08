@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import NewsSection from '../../components/NewsSection.astro';
+import { getAllNews } from '../../lib/microcms';
+const news = await getAllNews();
+---
+<BaseLayout title="お知らせ一覧 | ユリーカ・ティロドス" description="ユリーカ・ティロドスの活動・イベント・制作に関するお知らせ一覧。">
+  <Header />
+  <main id="main-content">
+    <div class="container archive-heading">
+      <a href="/#news">← ホームへ戻る</a>
+      <p>NEWS ARCHIVE</p>
+      <h1>お知らせ一覧</h1>
+    </div>
+    <NewsSection items={news} archive />
+  </main>
+  <Footer />
+</BaseLayout>
+<style>
+  .archive-heading { padding-top: calc(var(--header-height) + 60px); padding-bottom: 40px; }
+  a, p { color: var(--color-accent); }
+  p { margin-top: 36px; font-family: var(--font-display); }
+  h1 { margin-top: 12px; font-size: clamp(2rem, 5vw, 3.5rem); }
+</style>

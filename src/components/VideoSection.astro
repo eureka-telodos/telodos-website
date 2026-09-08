@@ -1,0 +1,50 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { publishedVideos, previewVideos } from '../data/videos';
+---
+
+{(publishedVideos.length > 0 || previewVideos) && (
+  <section class="section" id="videos">
+    <div class="container">
+      <SectionHeading eyebrow="MEET EUREKA" title="First Visit" />
+      <div class="videos">
+        {previewVideos && publishedVideos.length === 0 && (
+          <article>
+            <div class="video-preview">
+              <img src="/images/hero/background.webp" alt="" width="1920" height="1080" />
+              <div><span>16:9</span><strong>自己紹介動画</strong><p>制作中・配置確認用</p></div>
+            </div>
+            <h3>はじめまして、ユリーカ・ティロドスです</h3>
+            <p>完成した自己紹介動画をここに掲載します。</p>
+          </article>
+        )}
+        {publishedVideos.map((video) => (
+          <article>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
+              title={video.title} loading="lazy" allowfullscreen
+              allow="encrypted-media; picture-in-picture; fullscreen"
+              referrerpolicy="strict-origin-when-cross-origin"
+            />
+            <h3>{video.title}</h3>
+            <p>{video.description}</p>
+            <a href={`https://www.youtube.com/watch?v=${video.youtubeId}`} target="_blank" rel="noreferrer">YouTubeで見る ↗</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .videos { display: grid; gap: 40px; margin-top: 40px; }
+  .video-preview { position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--color-line-accent); background: var(--color-panel); display: grid; place-items: center; overflow: hidden; }
+  .video-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.25; }
+  .video-preview > div { position: relative; text-align: center; padding: 20px; }
+  .video-preview span { display: block; color: var(--color-accent); }
+  .video-preview strong { display: block; font-size: clamp(1.3rem, 4vw, 2.5rem); }
+  iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--color-line); }
+  h3 { margin-top: 20px; }
+  p { margin-block: 12px; color: var(--color-text-muted); }
+  a { color: var(--color-accent); }
+</style>

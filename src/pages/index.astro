@@ -10,6 +10,8 @@ import LinksSection from '../components/LinksSection.astro';
 import GuidelinesSection from '../components/GuidelinesSection.astro';
 import DesignSection from '../components/DesignSection.astro';
 import Footer from '../components/Footer.astro';
+import VideoSection from '../components/VideoSection.astro';
+import ContactSection from '../components/ContactSection.astro';
 import { site, socialLinks } from '../data/site';
 
 const personSchema = {
@@ -28,11 +30,13 @@ const personSchema = {
     <Hero />
     <PortalBar />
     <NewsSection />
+    <VideoSection />
     <ActivitySection />
     <ProfileSection />
     <LinksSection />
     <GuidelinesSection />
     <DesignSection />
+    <ContactSection />
   </main>
   <Footer />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
