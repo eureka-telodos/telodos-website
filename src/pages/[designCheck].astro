@@ -1,0 +1,59 @@
+---
+// Isolated responsive QA harness. Never generated for production or other branches.
+export function getStaticPaths() {
+  return process.env.WORKERS_CI_BRANCH === 'feat/coven-design'
+    ? [{ params: { designCheck: '__design-check' } }]
+    : [];
+}
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Telodos 表示検証</title>
+  </head>
+  <body>
+    <header>
+      <label>画面サイズ <select id="viewport">
+        <option value="320,740">320 × 740</option>
+        <option value="390,844">390 × 844</option>
+        <option value="844,390">844 × 390 横向き</option>
+        <option value="1366,900">1366 × 900</option>
+      </select></label>
+      <label>表示箇所 <select id="location">
+        <option value="/">Hero</option><option value="/#activity">配信</option>
+        <option value="/#news">ニュース</option><option value="/#profile">プロフィール</option>
+        <option value="/#links">支援先</option><option value="/#guidelines">ガイドライン</option>
+        <option value="/#design">資料</option><option value="/#contact">問い合わせ</option>
+        <option value="/news/">お知らせ一覧</option>
+      </select></label>
+      <label><input id="scripts" type="checkbox" checked />JavaScript</label>
+    </header>
+    <iframe id="preview-frame" title="表示検証対象" src="/" width="320" height="740"></iframe>
+  </body>
+</html>
+<script>
+  const frame = document.querySelector<HTMLIFrameElement>('#preview-frame')!;
+  const viewport = document.querySelector<HTMLSelectElement>('#viewport')!;
+  const location = document.querySelector<HTMLSelectElement>('#location')!;
+  const scripts = document.querySelector<HTMLInputElement>('#scripts')!;
+  viewport.addEventListener('change', () => {
+    const [width, height] = viewport.value.split(',');
+    frame.width = width;
+    frame.height = height;
+  });
+  location.addEventListener('change', () => { frame.src = location.value; });
+  scripts.addEventListener('change', () => {
+    if (scripts.checked) frame.removeAttribute('sandbox');
+    else frame.setAttribute('sandbox', 'allow-same-origin');
+    frame.src = location.value;
+  });
+</script>
+<style>
+  body { margin: 0; padding: 16px; background: #25212b; color: white; font: 14px system-ui; }
+  header { display: flex; flex-wrap: wrap; gap: 24px; padding-bottom: 16px; }
+  select { font: inherit; padding: 6px; }
+  iframe { display: block; border: 1px solid #827a8d; background: #08060b; }
+</style>
