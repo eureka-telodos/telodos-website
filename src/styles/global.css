@@ -28,7 +28,7 @@
 }
 
 html {
-  min-width: 320px;
+  min-width: 0;
   background: var(--color-bg);
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 18px);

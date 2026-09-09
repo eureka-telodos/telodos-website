@@ -1,0 +1,151 @@
+/* Home art direction: layered portraits, fine luminous borders and editorial type.
+   Scoped overrides keep the archive's existing layout independent. */
+#main-content.coven-home {
+  --color-text-muted: #b5acbf;
+  --color-text-faint: #a098aa;
+  --color-violet: #9a78d6;
+  --color-line: rgb(220 204 243 / 14%);
+  --motion-ease: cubic-bezier(.2,.7,.2,1);
+  --section-space: clamp(88px, 10vw, 144px);
+}
+
+#main-content.coven-home .section { position: relative; }
+#main-content.coven-home .section-heading__eyebrow { font-size: .75rem; line-height: 1.5; letter-spacing: .18em; }
+#main-content.coven-home .section-heading__eyebrow span { font-size: .875rem; }
+#main-content.coven-home .section-heading h2 { line-height: 1.1; font-size: clamp(2.2rem, 5.6vw, 4.5rem); text-wrap: balance; }
+#main-content.coven-home .section-heading__subtitle { font-size: .875rem; letter-spacing: .16em; }
+#main-content.coven-home .section-heading__description { font-size: 1rem; line-height: 2; }
+#main-content.coven-home .section-heading::after { content: ''; display: block; width: 72px; height: 1px; margin-top: 30px; background: var(--color-accent); box-shadow: 0 0 12px var(--color-accent-dim); }
+#main-content.coven-home .section-heading--center::after { margin-inline: auto; }
+
+/* An immediate, ordered route from the opening visual into the streams. */
+#main-content.coven-home .portal-bar { position: relative; z-index: 10; background: linear-gradient(110deg, #14161a, #110a19); }
+#main-content.coven-home .portal-bar a { min-width: 0; padding: 26px 20px; gap: 12px; }
+#main-content.coven-home .portal-bar a:first-child { border-top: 2px solid var(--color-accent); background: rgb(57 255 20 / 5%); }
+#main-content.coven-home .portal-bar small { font-size: .75rem; line-height: 1.5; letter-spacing: .08em; }
+#main-content.coven-home .portal-bar__index { font-size: .75rem; }
+#main-content.coven-home .portal-bar a > span:nth-child(2) { font-size: .875rem; line-height: 1.5; }
+
+/* Twitch gets the main stage; YouTube remains a clear secondary destination. */
+#main-content.coven-home .activity-section { background: radial-gradient(ellipse at 75% 30%, #21122f, transparent 60%), var(--color-bg-deep); }
+#main-content.coven-home .activity-list { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+#main-content.coven-home .activity-card { min-height: 0; padding: clamp(26px, 4.5vw, 58px); border-color: rgb(161 126 196 / 26%); transition: border-color 350ms, box-shadow 350ms; }
+#main-content.coven-home .activity-card--green { min-height: 420px; grid-template-columns: minmax(0, 1fr); grid-template-rows: 1fr auto; background:#0d0b12; }
+#main-content.coven-home .activity-card__number { position: relative; z-index: 2; font-size: .875rem; }
+#main-content.coven-home .activity-card--green .activity-card__content,
+#main-content.coven-home .activity-card--green > a { grid-column: 1; }
+#main-content.coven-home .activity-card__content { max-width: none; padding-block: 24px 30px; }
+#main-content.coven-home .activity-card__kicker { font-size: .75rem !important; line-height: 1.5 !important; }
+#main-content.coven-home .activity-card h3 { margin-top: 12px; font-size: clamp(3rem, 7vw, 6rem); line-height: 1.1; }
+#main-content.coven-home .activity-card__content > p:not(.activity-card__kicker) { color: var(--color-text); font-size: 1rem; line-height: 2; }
+#main-content.coven-home .activity-card small { font-size: .875rem; line-height: 1.9; color: var(--color-text-muted); }
+#main-content.coven-home .activity-card > a { min-height: 52px; padding: 14px 24px; font-size: .875rem; gap: 30px; transition: background-color 240ms, box-shadow 240ms; }
+#main-content.coven-home .activity-card--green > a { color: #090c08; background: var(--color-accent); }
+#main-content.coven-home .activity-card--green > a span { color: inherit; }
+#main-content.coven-home .activity-card--green > a:hover { box-shadow: 0 0 28px rgb(57 255 20 / 24%); }
+#main-content.coven-home .activity-card--green .activity-card__content { max-width:580px; align-self:end; }
+#main-content.coven-home .activity-card__watermark { display: none; }
+#main-content.coven-home .activity-card--red { display: grid; grid-template-columns: minmax(0,1fr) auto; grid-template-rows: auto; gap: 30px; align-items: center; background: linear-gradient(125deg, #1d1126, #0c0a11); }
+#main-content.coven-home .activity-card--red .activity-card__content { padding: 0; }
+#main-content.coven-home .activity-card--red h3 { font-size: clamp(2rem, 4vw, 3.5rem); }
+#main-content.coven-home .activity-card--red > a:hover { background: rgb(255 60 104 / 12%); }
+
+/* News stays literal and legible; imagery is never cropped to a narrow strip. */
+#main-content.coven-home .news-section { overflow: clip; background: radial-gradient(ellipse at 100% 50%, rgb(113 65 163 / 9%), transparent 60%), var(--color-bg); }
+#main-content.coven-home .news-section::before { top: 50px; right: 20px; font-size: clamp(4rem, 16vw, 12rem); }
+#main-content.coven-home .updates-layout { display: block; }
+#main-content.coven-home .news-card { background: #100d16; }
+#main-content.coven-home .news-card__media img { object-fit: contain; }
+#main-content.coven-home .news-card:hover .news-card__media img { transform: none; }
+#main-content.coven-home .news-card__media::after { display: none; }
+#main-content.coven-home .news-card__media > span { top: auto; bottom: 0; left: 0; font-size: .75rem; letter-spacing: .05em; }
+#main-content.coven-home .news-card h3 { font-size: 1.1rem; line-height: 1.7; }
+#main-content.coven-home .news-card--featured h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
+#main-content.coven-home .news-card__link { font-size: .75rem; line-height: 1.5; }
+#main-content.coven-home .news-more { display: flex; justify-content: space-between; width: fit-content; max-width: 100%; border: 0; border-bottom: 1px solid var(--color-line-accent); padding: 16px 0; transition: color 200ms; }
+#main-content.coven-home .news-more:hover { color: white; }
+
+/* The portrait breaks out of the usual card rhythm. */
+#main-content.coven-home .profile-section { background: radial-gradient(ellipse at 20% 45%, #21112e, transparent 58%), #08070d; }
+#main-content.coven-home .profile-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(36px, 6vw, 80px); }
+#main-content.coven-home .profile-visual { min-height: 790px; border: 0; border-bottom: 1px solid var(--color-line-accent); background: radial-gradient(ellipse at 50% 45%, rgb(94 47 123 / 35%), transparent 65%); }
+#main-content.coven-home .profile-visual::before { content: ''; position: absolute; inset: 8% 12% 10%; border: 1px solid rgb(172 126 219 / 32%); border-radius: 48% 48% 0 0; background: linear-gradient(150deg, rgb(138 81 180 / 12%), transparent 60%); box-shadow: inset 0 0 60px rgb(148 91 184 / 7%); }
+#main-content.coven-home .profile-visual img { height: 96%; width: 98%; filter: drop-shadow(0 0 20px rgb(88 214 84 / 14%)); }
+#main-content.coven-home .profile-visual__word { writing-mode: vertical-rl; inset: 0 auto auto 0; font-size: clamp(3rem, 7vw, 6rem); letter-spacing: .08em; color: rgb(221 196 250 / 8%); }
+#main-content.coven-home .profile-visual__quote { padding-inline: 10px; }
+#main-content.coven-home .profile-visual__quote p { font-size: .875rem; line-height: 1.6; }
+#main-content.coven-home .profile-content__intro { font-size: 1rem; }
+#main-content.coven-home .profile-facts > div { grid-template-columns: 110px minmax(0,1fr); gap: 16px; }
+#main-content.coven-home .profile-facts dt { font-size: .875rem; }
+#main-content.coven-home .profile-facts dt span { display: block; margin: 5px 0 0; font-size: .75rem; line-height: 1.4; }
+#main-content.coven-home .profile-facts dd { font-size: 1rem; overflow-wrap: anywhere; }
+#main-content.coven-home .profile-tags p { font-size: .875rem; flex-wrap: wrap; }
+
+#main-content.coven-home .links-section { background: radial-gradient(ellipse at 50% 10%, #21122b, transparent 65%), #07060a; }
+
+#main-content.coven-home .guidelines-section { background: linear-gradient(135deg, #100b16, #08060b 65%); }
+#main-content.coven-home .guidelines-layout { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 60px; }
+#main-content.coven-home .guidelines-intro__note { font-size: .75rem; line-height: 1.6; }
+#main-content.coven-home .guideline__index { font-size: .875rem; }
+#main-content.coven-home .guideline__title { font-size: 1rem; }
+#main-content.coven-home .guideline__title small { font-size: .75rem; line-height: 1.5; color: var(--color-text-muted); }
+#main-content.coven-home .guideline__content p { font-size: 1rem; }
+#main-content.coven-home .guideline summary { transition: color 220ms, background 220ms; }
+#main-content.coven-home .guideline summary:hover { background: rgb(147 104 185 / 6%); }
+#main-content.coven-home .guideline[open] { border-bottom-color: var(--color-line-accent); }
+
+#main-content.coven-home .design-section { background: #0b0810; }
+
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  #main-content.coven-home .activity-card:hover { border-color: var(--color-line-accent); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #main-content.coven-home .coven-entered { animation: coven-arrive 700ms var(--motion-ease) backwards; }
+  @keyframes coven-arrive { from { opacity: .4; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+}
+@media (max-width: 1000px) {
+  #main-content.coven-home .activity-card--red { grid-template-columns: minmax(0,1fr); }
+  #main-content.coven-home .activity-card--red > a { grid-column: 1; }
+  #main-content.coven-home .updates-layout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 920px) {
+  #main-content.coven-home .profile-layout { grid-template-columns: 1fr; }
+  #main-content.coven-home .profile-visual { min-height: min(800px, 130vw); width: min(100%, 580px); margin-inline: auto; }
+  #main-content.coven-home .profile-content { grid-row: auto; }
+  #main-content.coven-home .guidelines-layout { grid-template-columns: 1fr; gap: 42px; }
+  #main-content.coven-home .guidelines-intro { position: static; }
+}
+@media (max-width: 680px) {
+  #main-content.coven-home .section-heading h2 { font-size: clamp(2rem, 9vw, 3.2rem); }
+  #main-content.coven-home .activity-card--green { grid-template-columns: 1fr; }
+  #main-content.coven-home .activity-card--red { grid-template-columns: 1fr; gap: 18px; }
+  #main-content.coven-home .activity-card--red > a { grid-column: 1; }
+  #main-content.coven-home .activity-card h3 { font-size: 3rem; }
+  #main-content.coven-home .profile-facts > div { grid-template-columns: 1fr; gap: 8px; }
+  #main-content.coven-home .profile-facts dt span { display: inline; margin-left: 10px; }
+  #main-content.coven-home .profile-facts dd { text-align: left; }
+  #main-content.coven-home .profile-visual__quote strong { font-size: 1rem; letter-spacing: 0; }
+  #main-content.coven-home .guideline__content { padding-inline: 0; }
+}
+
+/* Equal news cards; social content lives in the separate fixed-post card. */
+#main-content.coven-home .news-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+#main-content.coven-home .news-card--featured { grid-column: auto; }
+#main-content.coven-home .news-card--featured h3 { font-size:1.1rem; }
+#main-content.coven-home .news-card p { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+#main-content.coven-home .news-card__body { padding:22px; }
+@media(max-width:800px) { #main-content.coven-home .news-grid { grid-template-columns:1fr; } }
+
+#main-content.coven-home .updates-layout > .x-post-wrap { width:100%; max-width:580px; margin:0 auto; min-width:0; }
+@media(min-width:1001px) {
+  #main-content.coven-home .updates-layout { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:32px; align-items:start; }
+  #main-content.coven-home .news-grid { grid-template-columns:1fr; }
+  #main-content.coven-home .news-card { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1fr); align-items:start; }
+  #main-content.coven-home .news-card__body { padding:20px; }
+  #main-content.coven-home .news-card__link { padding-top:14px; }
+  #main-content.coven-home .news-card p { -webkit-line-clamp:2; font-size:.9rem; }
+}
+@media(max-width:1000px) {
+  #main-content.coven-home .updates-layout > .x-post-wrap { margin-top:48px; }
+}

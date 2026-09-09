@@ -1,0 +1,42 @@
+---
+import { featuredPost } from '../data/x-post';
+const post = featuredPost;
+---
+{post && <aside class="x-post-wrap" aria-label="ユリーカのX投稿">
+  <a class="x-post" href={post.url} target="_blank" rel="noreferrer" aria-label="ユリーカ・ティロドスの投稿をXで見る（外部サイト）">
+    <header class="x-post__author">
+      <img src={post.avatar} alt="" width="48" height="48" loading="lazy" />
+      <div><strong>ユリーカ・ティロドス</strong><span>@eureka_td</span></div>
+      <svg class="x-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.63 7.58H.48l8.6-9.84L0 1.15h7.6l5.24 6.93 6.06-6.93ZM17.61 20.65h2.04L6.49 3.23H4.3l13.31 17.42Z" /></svg>
+    </header>
+    <p class="x-post__text">{post.text}</p>
+    <img class="x-post__image" src={post.image} alt={post.imageAlt} width="1200" height="1200" loading="lazy" decoding="async" />
+    <time datetime={post.publishedAt}>{post.dateLabel}</time>
+    <div class="x-post__reactions" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 1-8 8H5l-3 3V11a9 9 0 0 1 18 0Z" /></svg>
+      <svg viewBox="0 0 24 24"><path d="m2 7 4-4 4 4M6 3v12a3 3 0 0 0 3 3h2m11-1-4 4-4-4m4 4V9a3 3 0 0 0-3-3h-2" /></svg>
+      <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" /></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 16V2m-5 5 5-5 5 5M5 13v8h14v-8" /></svg>
+    </div>
+    <span class="x-post__external">Xで投稿を見る ↗</span>
+  </a>
+  <a class="x-post-follow" href="https://x.com/eureka_td" target="_blank" rel="noreferrer">Follow @eureka_td →</a>
+</aside>}
+<style>
+  .x-post-wrap { width:min(100% - 28px,580px); margin:0 auto clamp(80px,9vw,120px); }
+  .x-post { display:block; padding:24px; color:#e7e9ea; background:#08090c; border:1px solid #34353b; border-radius:16px; transition:border-color 240ms,box-shadow 240ms; }
+  .x-post:hover { border-color:var(--color-accent); box-shadow:0 0 30px rgb(57 255 20 / 9%); }
+  .x-post__author { display:flex; align-items:center; gap:12px; }
+  .x-post__author > img { border-radius:50%; object-fit:cover; width:48px; height:48px; }
+  .x-post__author strong { display:block; font-size:1rem; }
+  .x-post__author span { display:block; color:#9ba0a5; font-size:.875rem; }
+  .x-logo { width:22px; height:22px; margin-left:auto; flex:none; }
+  .x-post__text { margin-block:20px; white-space:pre-wrap; overflow-wrap:anywhere; font-size:1rem; line-height:1.8; }
+  .x-post__image { width:100%; height:auto; max-height:520px; object-fit:contain; border:1px solid #303238; border-radius:12px; }
+  time { display:block; padding-block:18px; color:#9ba0a5; font-size:.875rem; }
+  .x-post__reactions { display:flex; justify-content:space-between; padding-block:16px; border-block:1px solid #303238; color:#9ba0a5; }
+  .x-post__reactions svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+  .x-post__external { display:block; margin-top:16px; color:#98c9f7; font-size:.875rem; }
+  .x-post-follow { display:block; width:fit-content; margin:20px auto 0; padding:12px; color:var(--color-accent); font-size:.875rem; }
+  @media(max-width:400px) { .x-post { padding:18px; } .x-post__author strong { font-size:.875rem; } }
+</style>

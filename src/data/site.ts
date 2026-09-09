@@ -22,12 +22,11 @@ export const site = {
 } as const;
 
 export const navigation: NavigationItem[] = [
-  { label: 'NEWS', href: '#news' },
   { label: 'ACTIVITY', href: '#activity' },
+  { label: 'NEWS', href: '#news' },
   { label: 'PROFILE', href: '#profile' },
   { label: 'LINKS', href: '#links' },
   { label: 'GUIDELINES', href: '#guidelines' },
-  { label: 'DESIGN', href: '#design' },
   ...(publishedVideos.length || previewVideos ? [{ label: 'VIDEOS', href: '#videos' }] : []),
   { label: 'CONTACT', href: '#contact' },
 ];
@@ -48,7 +47,7 @@ export const profile = {
   catchphrase: 'まだまだ夜はこれから…だよね？',
   englishCatchphrase: 'Will you stay up late with me tonight?',
   introduction:
-    '黒と緑を纏う吸血鬼VTuber。Twitchでのゲーム配信を中心に、VRChatでの写真・映像表現や、Unityを使った制作と解説を届けています。',
+    '黒と緑を纏う吸血鬼。',
   facts: [
     { label: '真名', englishLabel: 'Name', value: 'ユリーカ・ティロドス' },
     { label: '種族', englishLabel: 'Race', value: '吸血鬼 (Vampire)', accent: true },
@@ -70,10 +69,9 @@ export const activities = [
     kicker: 'LIVE STREAM',
     title: 'Twitch',
     description:
-      '主に対戦ゲームやアクションゲームの実況配信をリアルタイムで届けています。チャンネルをサブスクライブしていただくと、特別なバッジや様々なエモートが使えるだけでなく、後述するDiscordサーバーにも参加できます。',
-    note: 'サブスクライブし、TwitchとDiscordを連携することで、自動的に専用サーバーへ参加できます。特別なお写真やUnity用無料ツールの限定公開のほか、クローズドな空間での特別なチャット交流を行っています。',
+      '対戦ゲームやアクションゲームを中心に、Twitchでリアルタイム配信を行っています。',
     href: 'https://twitch.tv/eureka_td',
-    linkLabel: 'Twitchへアクセス',
+    linkLabel: 'WATCH LIVE',
     tone: 'green',
   },
   {
@@ -82,43 +80,27 @@ export const activities = [
     kicker: 'VIDEOS & TUTORIALS',
     title: 'YOUTUBE',
     description:
-      'YouTubeでは5万回以上再生されている「VRchat向けのUnity解説動画」のほか、ライブ配信のアーカイブなどを見ることが出来ます。さらに「歌ってみた」や「踊ってみた」などへの挑戦も行っています。',
-    note: '【VRChat】まばたきが潰れる時の修正方法【FaceEmo】— VRchat初心者の人に向けたあるあるを解決するチュートリアル。',
+      'VRChat・Unityの解説動画、配信アーカイブ、歌や映像作品などを公開しています。',
     href: 'https://www.youtube.com/@eureka_td',
-    linkLabel: 'Youtubeへアクセス',
+    linkLabel: 'WATCH VIDEOS',
     tone: 'red',
   },
 ] as const;
 
 export const officialLinks = [
-  {
-    label: 'Fantia',
-    category: 'PORTRAITS',
-    title: 'ユリーカのお城',
-    description:
-      'Xで見れない写真や動画を公開。更にFantiaではコミッションでVRChatで実際に会えるチケットやアーカイブ写真集などを販売しています。',
-    href: 'https://fantia.jp/fanclubs/474012',
-    cta: 'Fantiaに加入する',
-    tone: 'fantia',
-  },
-  {
-    label: 'FANBOX',
-    category: 'PORTRAITS',
-    title: 'FANBOX出張版',
-    description:
-      '基本的にはFantiaと同一内容を投稿しています。ただし、過去の写真は随時上位プランへと移されます。ほかにも、FANBOXとDiscordを連携することでファンサーバーに参加も可能です。',
-    href: 'https://eureka-td.fanbox.cc/',
-    cta: 'FANBOXに加入する',
-    tone: 'fanbox',
-  },
-  {
-    label: 'BOOTH',
-    category: 'TOOLS & MERCH',
-    title: 'Principaleka BOOTH',
-    description:
-      '私自身が開発したアバター改変用のUnityツールのオンライン販売や、リアルグッズを通販で入手可能。お気軽に覗いてみてください。',
-    href: 'https://principaleka.booth.pm/',
-    cta: 'BOOTHストアへ',
-    tone: 'booth',
-  },
+  { label: 'Fantia', description: 'Photos / Videos / Commission', href: 'https://fantia.jp/fanclubs/474012', cta: 'JOIN FANTIA', tone: 'fantia' },
+  { label: 'FANBOX', description: 'Photos / Videos / Discord', href: 'https://eureka-td.fanbox.cc/', cta: 'JOIN FANBOX', tone: 'fanbox' },
+  { label: 'BOOTH', description: 'Unity Tools / Goods', href: 'https://principaleka.booth.pm/', cta: 'VISIT BOOTH', tone: 'booth' },
+] as const;
+
+export const twitchSupport = 'Twitchのサブスクでは特別なバッジ・エモートを利用できます。TwitchとDiscordを連携すると専用サーバーに参加でき、限定写真やUnity用無料ツール、チャット交流を楽しめます。';
+
+export const linkDirectory = [
+  { label: 'TWITCH', note: 'Live Streaming', href: 'https://twitch.tv/eureka_td' },
+  { label: 'YOUTUBE', note: 'Videos', href: 'https://www.youtube.com/@eureka_td' },
+  { label: 'X', note: 'Social', href: 'https://x.com/eureka_td' },
+  { label: 'VRCHAT', note: 'Profile', href: 'https://vrchat.com/home/user/usr_bbdc1b8e-a493-40dd-bb16-a3db994e8a16' },
+  { label: 'FANTIA', note: 'Fan Club', href: 'https://fantia.jp/fanclubs/474012' },
+  { label: 'FANBOX', note: 'Fan Club', href: 'https://eureka-td.fanbox.cc/' },
+  { label: 'BOOTH', note: 'Tools & Goods', href: 'https://principaleka.booth.pm/' },
 ] as const;

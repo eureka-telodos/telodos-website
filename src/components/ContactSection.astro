@@ -1,15 +1,20 @@
 ---
-import SectionHeading from './SectionHeading.astro';
 import { contact } from '../data/site';
 ---
-<section class="section section--deep" id="contact">
-  <div class="container">
-    <SectionHeading eyebrow="GET IN TOUCH" title="Contact" description={contact.description} />
-    <a class="contact-link" href={contact.href} target="_blank" rel="noreferrer">Xのプロフィールを開く — {contact.handle} ↗</a>
-    <p class="contact-note">プロフィールのメッセージボタンからDMをお送りください。Xへのログインが必要です。</p>
+<section class="contact-strip" id="contact" aria-labelledby="contact-heading">
+  <div class="container contact-strip__inner">
+    <h2 id="contact-heading">CONTACT</h2>
+    <p>お仕事・コラボ・掲載等のお問い合わせ</p>
+    <a href={contact.href} target="_blank" rel="noreferrer">DM {contact.handle} <span aria-hidden="true">↗</span></a>
   </div>
 </section>
 <style>
-  .contact-link { display: inline-block; margin-top: 32px; padding: 18px 22px; border: 1px solid var(--color-accent-dim); color: var(--color-accent); overflow-wrap: anywhere; }
-  .contact-note { margin-top: 16px; color: var(--color-text-muted); font-size: 0.875rem; }
+  .contact-strip { border-top: 1px solid var(--color-line); background: var(--color-panel); }
+  .contact-strip__inner { display:flex; flex-wrap:wrap; align-items:center; gap:16px 32px; padding-block:32px; }
+  h2 { font:600 1.1rem/1.5 var(--font-display); letter-spacing:.1em; }
+  p { font-size:.875rem; color:var(--color-text-muted); }
+  a { margin-left:auto; padding-block:12px; font-size:.875rem; color:var(--color-accent); }
+  a span { margin-left:16px; }
+  a:hover { color:white; }
+  @media(max-width:680px) { .contact-strip__inner { display:grid; gap:8px; } a { margin-left:0; } }
 </style>

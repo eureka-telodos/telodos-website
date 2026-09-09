@@ -1,6 +1,7 @@
 import type { NewsItem } from '../data/news';
 
 export const newsConfigured = Boolean(import.meta.env.MICROCMS_API_KEY || process.env.MICROCMS_API_KEY);
+export const usesDesignSnapshot = !newsConfigured && process.env.WORKERS_CI_BRANCH === 'feat/coven-design';
 
 // NEWS is fetched from microCMS during the Astro production build.
 const serviceDomain = 'etdnews';
@@ -39,6 +40,10 @@ const loadNews = async (): Promise<NewsItem[]> => {
   const apiKey = import.meta.env.MICROCMS_API_KEY || process.env.MICROCMS_API_KEY;
 
   if (!apiKey) {
+    if (usesDesignSnapshot) {
+      const { previewNews } = await import('../data/preview-news');
+      return previewNews;
+    }
     if (process.env.WORKERS_CI_BRANCH === 'main') {
       throw new Error('MICROCMS_API_KEY is missing from the production build environment.');
     }

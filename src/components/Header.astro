@@ -206,6 +206,8 @@ import { navigation, socialLinks } from '../data/site';
     .mobile-navigation {
       position: fixed;
       inset: var(--header-height) 0 0;
+      bottom: auto;
+      height: calc(100dvh - var(--header-height));
       min-height: 0;
       padding: 34px max(24px, calc((100vw - var(--container)) / 2));
       display: grid;

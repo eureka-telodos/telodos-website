@@ -1,7 +1,3 @@
----
-import { socialLinks } from '../data/site';
----
-
 <section class="hero" id="top" aria-labelledby="hero-title" data-hero>
   <h1 class="sr-only" id="hero-title">ユリーカ・ティロドス 公式サイト</h1>
 
@@ -37,12 +33,9 @@ import { socialLinks } from '../data/site';
 
   <div class="hero__identity">
     <p>VAMPIRE VTUBER <span>/</span> VRCHAT CREATOR</p>
-    <div class="hero__socials">
-      {socialLinks.map((item) => <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>)}
-    </div>
   </div>
 
-  <a class="hero__scroll" href="#news">
+  <a class="hero__scroll" href="#activity">
     <span>SCROLL TO ENTER</span>
     <i aria-hidden="true"></i>
   </a>
