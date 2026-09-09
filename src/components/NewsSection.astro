@@ -1,5 +1,6 @@
 ---
 import SectionHeading from './SectionHeading.astro';
+import XPostCard from './XPostCard.astro';
 import { getNews, newsConfigured, usesDesignSnapshot } from '../lib/microcms';
 import type { NewsItem } from '../data/news';
 
@@ -45,6 +46,7 @@ const news = items ?? await getNews();
     {news.length === 0 && <p class="news-empty">{newsConfigured ? '現在、公開中のお知らせはありません。' : 'プレビューのお知らせはmicroCMS接続設定待ちです。'}{!newsConfigured && <a href="https://telodos.com/#news"> 本番のお知らせを見る ↗</a>}</p>}
     {!archive && <a class="news-more" href="/news/">もっと見る — お知らせ一覧 →</a>}
     </div>
+    {!archive && <XPostCard />}
     </div>
   </div>
 </section>

@@ -30,9 +30,8 @@
 #main-content.coven-home .activity-section { background: radial-gradient(ellipse at 75% 30%, #21122f, transparent 60%), var(--color-bg-deep); }
 #main-content.coven-home .activity-list { grid-template-columns: minmax(0, 1fr); gap: 28px; }
 #main-content.coven-home .activity-card { min-height: 0; padding: clamp(26px, 4.5vw, 58px); border-color: rgb(161 126 196 / 26%); transition: border-color 350ms, box-shadow 350ms; }
-#main-content.coven-home .activity-card--green { min-height: 420px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr auto; background: radial-gradient(ellipse at 85% 35%, rgb(57 255 20 / 9%), transparent 65%), #0d0b12; }
+#main-content.coven-home .activity-card--green { min-height: 420px; grid-template-columns: minmax(0, 1fr); grid-template-rows: 1fr auto; background:#0d0b12; }
 #main-content.coven-home .activity-card__number { position: relative; z-index: 2; font-size: .875rem; }
-#main-content.coven-home .activity-card--green .activity-card__number,
 #main-content.coven-home .activity-card--green .activity-card__content,
 #main-content.coven-home .activity-card--green > a { grid-column: 1; }
 #main-content.coven-home .activity-card__content { max-width: none; padding-block: 24px 30px; }
@@ -44,10 +43,9 @@
 #main-content.coven-home .activity-card--green > a { color: #090c08; background: var(--color-accent); }
 #main-content.coven-home .activity-card--green > a span { color: inherit; }
 #main-content.coven-home .activity-card--green > a:hover { box-shadow: 0 0 28px rgb(57 255 20 / 24%); }
-#main-content.coven-home .activity-card__visual { position: absolute; inset: 0 0 0 44%; overflow: hidden; pointer-events: none; }
-#main-content.coven-home .activity-card__visual img { width: 100%; height: 100%; object-fit: cover; object-position: 66% top; opacity: .9; mask-image: linear-gradient(90deg, transparent, #000 22%); transition: transform 700ms var(--motion-ease); }
+#main-content.coven-home .activity-card--green .activity-card__content { max-width:580px; align-self:end; }
 #main-content.coven-home .activity-card__watermark { display: none; }
-#main-content.coven-home .activity-card--red { display: grid; grid-template-columns: 30px minmax(0,1fr) auto; grid-template-rows: auto; gap: 30px; align-items: center; background: linear-gradient(125deg, #1d1126, #0c0a11); }
+#main-content.coven-home .activity-card--red { display: grid; grid-template-columns: minmax(0,1fr) auto; grid-template-rows: auto; gap: 30px; align-items: center; background: linear-gradient(125deg, #1d1126, #0c0a11); }
 #main-content.coven-home .activity-card--red .activity-card__content { padding: 0; }
 #main-content.coven-home .activity-card--red h3 { font-size: clamp(2rem, 4vw, 3.5rem); }
 #main-content.coven-home .activity-card--red > a:hover { background: rgb(255 60 104 / 12%); }
@@ -100,7 +98,6 @@
 
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  #main-content.coven-home .activity-card--green:hover .activity-card__visual img { transform: scale(1.025); }
   #main-content.coven-home .activity-card:hover { border-color: var(--color-line-accent); }
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -108,8 +105,8 @@
   @keyframes coven-arrive { from { opacity: .4; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 }
 @media (max-width: 1000px) {
-  #main-content.coven-home .activity-card--red { grid-template-columns: 24px minmax(0,1fr); }
-  #main-content.coven-home .activity-card--red > a { grid-column: 2; }
+  #main-content.coven-home .activity-card--red { grid-template-columns: minmax(0,1fr); }
+  #main-content.coven-home .activity-card--red > a { grid-column: 1; }
   #main-content.coven-home .updates-layout { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 920px) {
@@ -121,9 +118,7 @@
 }
 @media (max-width: 680px) {
   #main-content.coven-home .section-heading h2 { font-size: clamp(2rem, 9vw, 3.2rem); }
-  #main-content.coven-home .activity-card--green { grid-template-columns: 1fr; padding-top: 300px; }
-  #main-content.coven-home .activity-card__visual { inset: 0 0 auto; height: 340px; }
-  #main-content.coven-home .activity-card__visual img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 12%; mask-image: linear-gradient(#000 55%, transparent); }
+  #main-content.coven-home .activity-card--green { grid-template-columns: 1fr; }
   #main-content.coven-home .activity-card--red { grid-template-columns: 1fr; gap: 18px; }
   #main-content.coven-home .activity-card--red > a { grid-column: 1; }
   #main-content.coven-home .activity-card h3 { font-size: 3rem; }
@@ -141,3 +136,16 @@
 #main-content.coven-home .news-card p { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
 #main-content.coven-home .news-card__body { padding:22px; }
 @media(max-width:800px) { #main-content.coven-home .news-grid { grid-template-columns:1fr; } }
+
+#main-content.coven-home .updates-layout > .x-post-wrap { width:100%; max-width:580px; margin:0 auto; min-width:0; }
+@media(min-width:1001px) {
+  #main-content.coven-home .updates-layout { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:32px; align-items:start; }
+  #main-content.coven-home .news-grid { grid-template-columns:1fr; }
+  #main-content.coven-home .news-card { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1fr); align-items:start; }
+  #main-content.coven-home .news-card__body { padding:20px; }
+  #main-content.coven-home .news-card__link { padding-top:14px; }
+  #main-content.coven-home .news-card p { -webkit-line-clamp:2; font-size:.9rem; }
+}
+@media(max-width:1000px) {
+  #main-content.coven-home .updates-layout > .x-post-wrap { margin-top:48px; }
+}
