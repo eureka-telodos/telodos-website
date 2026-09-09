@@ -10,7 +10,7 @@ const post = featuredPost;
       <svg class="x-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.63 7.58H.48l8.6-9.84L0 1.15h7.6l5.24 6.93 6.06-6.93ZM17.61 20.65h2.04L6.49 3.23H4.3l13.31 17.42Z" /></svg>
     </header>
     <p class="x-post__text">{post.text}</p>
-    <img class="x-post__image" src={post.image} alt={post.imageAlt} loading="lazy" decoding="async" />
+    <img class="x-post__image" src={post.image} alt={post.imageAlt} width="1200" height="1200" loading="lazy" decoding="async" />
     <time datetime={post.publishedAt}>{post.dateLabel}</time>
     <div class="x-post__reactions" aria-hidden="true">
       <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 1-8 8H5l-3 3V11a9 9 0 0 1 18 0Z" /></svg>
