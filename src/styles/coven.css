@@ -48,7 +48,7 @@
 #main-content.coven-home .activity-card__visual { position: absolute; inset: 0 0 0 44%; overflow: hidden; pointer-events: none; }
 #main-content.coven-home .activity-card__visual img { width: 100%; height: 100%; object-fit: cover; object-position: 66% top; opacity: .9; mask-image: linear-gradient(90deg, transparent, #000 22%); transition: transform 700ms var(--motion-ease); }
 #main-content.coven-home .activity-card__watermark { display: none; }
-#main-content.coven-home .activity-card--red { display: grid; grid-template-columns: 30px minmax(0,1fr) auto; gap: 30px; align-items: center; background: linear-gradient(125deg, #1d1126, #0c0a11); }
+#main-content.coven-home .activity-card--red { display: grid; grid-template-columns: 30px minmax(0,1fr) auto; grid-template-rows: auto; gap: 30px; align-items: center; background: linear-gradient(125deg, #1d1126, #0c0a11); }
 #main-content.coven-home .activity-card--red .activity-card__content { padding: 0; }
 #main-content.coven-home .activity-card--red h3 { font-size: clamp(2rem, 4vw, 3.5rem); }
 #main-content.coven-home .activity-card--red > a:hover { background: rgb(255 60 104 / 12%); }
