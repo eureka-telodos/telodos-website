@@ -1,20 +1,49 @@
 <aside class="timeline" aria-labelledby="timeline-heading">
-  <h3 id="timeline-heading">X Timeline <span>日々の投稿</span></h3>
-  <a class="timeline-link" href="https://x.com/eureka_td" target="_blank" rel="noreferrer">@eureka_td — Xで見る ↗</a>
-    <div class="timeline-feed">
-      <a class="twitter-timeline" data-height="600" data-theme="dark" data-dnt="true" href="https://twitter.com/eureka_td">@eureka_tdの投稿をXで見る</a>
-    </div>
-  <p>表示されない場合は「Xで見る」からご覧ください。</p>
+  <div class="timeline-portrait" aria-hidden="true">
+    <img src="/images/hero/character-main.webp" alt="" width="3840" height="3840" loading="lazy" decoding="async" />
+    <span>X</span>
+  </div>
+  <div class="timeline-profile">
+    <h3 id="timeline-heading">X Timeline <span>日々の投稿</span></h3>
+    <p class="timeline-name">ユリーカ・ティロドス</p>
+    <a class="timeline-link" href="https://x.com/eureka_td" target="_blank" rel="noreferrer">@eureka_td <span>Xで見る ↗</span></a>
+    <p class="timeline-note">投稿が表示されない場合も、Xのプロフィールからご覧いただけます。</p>
+  </div>
+  <div class="timeline-feed" id="x-timeline-feed" aria-hidden="true" inert>
+    <a class="twitter-timeline" data-height="400" data-theme="dark" data-dnt="true" href="https://twitter.com/eureka_td">@eureka_tdの投稿をXで見る</a>
+  </div>
 </aside>
 
+<script is:inline>
+  // Subscribe before widgets.js. iframe load also fires on HTTP errors, so only
+  // the widget's rendered event opens the feed. The profile link always remains.
+  window.twttr = window.twttr || { _e: [], ready: function (callback) { this._e.push(callback); } };
+  window.twttr.ready(function (api) {
+    api.events.bind('rendered', function (event) {
+      const feed = document.getElementById('x-timeline-feed');
+      if (feed && event.target && feed.contains(event.target)) {
+        feed.dataset.rendered = 'true';
+        feed.removeAttribute('aria-hidden');
+        feed.removeAttribute('inert');
+      }
+    });
+  });
+</script>
 <script is:inline async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <style>
-  .timeline { min-width: 0; align-self: start; padding: 22px; border: 1px solid var(--color-line); background: var(--color-panel); }
-  h3 { font: 600 1.3rem/1.6 var(--font-display); }
-  h3 span { display: block; font: 400 0.875rem/1.7 var(--font-body); color: var(--color-text-muted); }
-  .timeline-link { display: inline-block; margin-block: 16px; color: var(--color-accent); overflow-wrap: anywhere; }
-  .timeline-feed { max-height: 600px; overflow: auto; }
-  .twitter-timeline { display: block; padding-block: 20px; }
-  p { margin-top: 16px; font-size: 0.875rem; color: var(--color-text-muted); }
+  .timeline { min-width: 0; align-self: start; border: 1px solid var(--color-line-strong); background: linear-gradient(145deg, #1c1126, var(--color-panel)); overflow: hidden; }
+  .timeline-portrait { position: relative; height: 200px; overflow: hidden; background: radial-gradient(ellipse at 70% 40%, #34402a, #17101e 70%); }
+  .timeline-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 15%; mask-image: linear-gradient(#000 60%, transparent); }
+  .timeline-portrait > span { position: absolute; left: 24px; bottom: 0; font: 500 3rem/1.2 var(--font-body); color: white; }
+  .timeline-profile { padding: 26px; }
+  h3 { font: 600 1.5rem/1.4 var(--font-display); }
+  h3 span { display: block; margin-top: 8px; font: 400 .875rem/1.7 var(--font-body); color: var(--color-text-muted); }
+  .timeline-name { margin-top: 24px; font-size: 1rem; }
+  .timeline-link { display: flex; flex-wrap: wrap; gap: 10px 20px; justify-content: space-between; align-items: center; min-height: 52px; margin-top: 12px; padding-block: 12px; border-bottom: 1px solid var(--color-line-accent); color: var(--color-accent); overflow-wrap: anywhere; font-size: .875rem; }
+  .timeline-link:hover { color: white; }
+  .timeline-note { margin-top: 16px; font-size: .875rem; color: var(--color-text-muted); }
+  .timeline-feed { max-height: 0; overflow: hidden; }
+  .timeline-feed[data-rendered='true'] { max-height: 400px; overflow: auto; border-top: 1px solid var(--color-line); }
+  .twitter-timeline { display: block; }
 </style>

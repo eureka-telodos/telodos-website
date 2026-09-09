@@ -14,6 +14,9 @@ import { activities } from '../data/site';
     <div class="activity-list">
       {activities.map((activity) => (
         <article class:list={['activity-card', `activity-card--${activity.tone}`]}>
+          {activity.id === 'twitch' && <div class="activity-card__visual" aria-hidden="true">
+            <img src="/images/hero/character-main.webp" alt="" width="3840" height="3840" loading="lazy" decoding="async" />
+          </div>}
           <span class="activity-card__number">{activity.index}</span>
           <div class="activity-card__content">
             <p class="activity-card__kicker">{activity.kicker}</p>

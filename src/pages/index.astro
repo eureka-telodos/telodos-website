@@ -13,6 +13,8 @@ import Footer from '../components/Footer.astro';
 import VideoSection from '../components/VideoSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 import { site, socialLinks } from '../data/site';
+import '../styles/coven.css';
+import SectionMotion from '../components/SectionMotion.astro';
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -26,12 +28,12 @@ const personSchema = {
 
 <BaseLayout>
   <Header />
-  <main id="main-content">
+  <main id="main-content" class="coven-home">
     <Hero />
     <PortalBar />
-    <NewsSection />
-    <VideoSection />
     <ActivitySection />
+    <VideoSection />
+    <NewsSection />
     <ProfileSection />
     <LinksSection />
     <GuidelinesSection />
@@ -39,5 +41,6 @@ const personSchema = {
     <ContactSection />
   </main>
   <Footer />
+  <SectionMotion />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 </BaseLayout>

@@ -22,8 +22,8 @@ export const site = {
 } as const;
 
 export const navigation: NavigationItem[] = [
-  { label: 'NEWS', href: '#news' },
   { label: 'ACTIVITY', href: '#activity' },
+  { label: 'NEWS', href: '#news' },
   { label: 'PROFILE', href: '#profile' },
   { label: 'LINKS', href: '#links' },
   { label: 'GUIDELINES', href: '#guidelines' },
