@@ -8,7 +8,6 @@ import { activities } from '../data/site';
     <SectionHeading
       eyebrow="STREAMS & CREATION"
       title="Into the Night"
-      description="リアルタイムで一緒に過ごす夜と、あとから何度でも見られる作品。それぞれの入口をまとめています。"
     />
 
     <div class="activity-list">
@@ -22,7 +21,6 @@ import { activities } from '../data/site';
             <p class="activity-card__kicker">{activity.kicker}</p>
             <h3>{activity.title}</h3>
             <p>{activity.description}</p>
-            <small>{activity.note}</small>
           </div>
           <a href={activity.href} target="_blank" rel="noreferrer">
             {activity.linkLabel}<span aria-hidden="true">↗</span>

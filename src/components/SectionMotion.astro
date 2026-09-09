@@ -9,7 +9,7 @@
         observer.unobserve(entry.target);
       }
     }, { threshold: 0.08 });
-    document.querySelectorAll('.coven-home .section-heading, .coven-home .activity-card, .coven-home .profile-visual, .coven-home .official-link, .coven-home .design-card').forEach((element) => observer.observe(element));
+    document.querySelectorAll('.coven-home .section-heading, .coven-home .activity-card, .coven-home .profile-visual, .coven-home .support-choice, .coven-home .reference-item').forEach((element) => observer.observe(element));
     preference.addEventListener('change', (event) => {
       if (event.matches) observer.disconnect();
     });

@@ -2,7 +2,6 @@
 import SectionHeading from './SectionHeading.astro';
 import { getNews, newsConfigured, usesDesignSnapshot } from '../lib/microcms';
 import type { NewsItem } from '../data/news';
-import XTimeline from './XTimeline.astro';
 
 interface Props { items?: NewsItem[]; archive?: boolean; }
 const { items, archive = false } = Astro.props;
@@ -14,7 +13,6 @@ const news = items ?? await getNews();
     {!archive && <SectionHeading
       eyebrow="LATEST NEWS & LOG"
       title="Latest Update"
-      description="活動のお知らせ、記念日、新しい挑戦。夜の記録を新しい順に届けます。"
     />}
 
     {usesDesignSnapshot && <p class="preview-news-note">デザイン確認用：2026年9月9日時点の本番公開記事を表示しています。</p>}
@@ -47,7 +45,6 @@ const news = items ?? await getNews();
     {news.length === 0 && <p class="news-empty">{newsConfigured ? '現在、公開中のお知らせはありません。' : 'プレビューのお知らせはmicroCMS接続設定待ちです。'}{!newsConfigured && <a href="https://telodos.com/#news"> 本番のお知らせを見る ↗</a>}</p>}
     {!archive && <a class="news-more" href="/news/">もっと見る — お知らせ一覧 →</a>}
     </div>
-    {!archive && <XTimeline />}
     </div>
   </div>
 </section>

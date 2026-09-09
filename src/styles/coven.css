@@ -25,13 +25,12 @@
 #main-content.coven-home .portal-bar small { font-size: .75rem; line-height: 1.5; letter-spacing: .08em; }
 #main-content.coven-home .portal-bar__index { font-size: .75rem; }
 #main-content.coven-home .portal-bar a > span:nth-child(2) { font-size: .875rem; line-height: 1.5; }
-#main-content.coven-home .hero__socials a { font-size: .875rem; min-height: 36px; display: inline-flex; align-items: center; }
 
 /* Twitch gets the main stage; YouTube remains a clear secondary destination. */
 #main-content.coven-home .activity-section { background: radial-gradient(ellipse at 75% 30%, #21122f, transparent 60%), var(--color-bg-deep); }
 #main-content.coven-home .activity-list { grid-template-columns: minmax(0, 1fr); gap: 28px; }
 #main-content.coven-home .activity-card { min-height: 0; padding: clamp(26px, 4.5vw, 58px); border-color: rgb(161 126 196 / 26%); transition: border-color 350ms, box-shadow 350ms; }
-#main-content.coven-home .activity-card--green { min-height: 590px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr auto; background: radial-gradient(ellipse at 85% 35%, rgb(57 255 20 / 9%), transparent 65%), #0d0b12; }
+#main-content.coven-home .activity-card--green { min-height: 420px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr auto; background: radial-gradient(ellipse at 85% 35%, rgb(57 255 20 / 9%), transparent 65%), #0d0b12; }
 #main-content.coven-home .activity-card__number { position: relative; z-index: 2; font-size: .875rem; }
 #main-content.coven-home .activity-card--green .activity-card__number,
 #main-content.coven-home .activity-card--green .activity-card__content,
@@ -56,7 +55,7 @@
 /* News stays literal and legible; imagery is never cropped to a narrow strip. */
 #main-content.coven-home .news-section { overflow: clip; background: radial-gradient(ellipse at 100% 50%, rgb(113 65 163 / 9%), transparent 60%), var(--color-bg); }
 #main-content.coven-home .news-section::before { top: 50px; right: 20px; font-size: clamp(4rem, 16vw, 12rem); }
-#main-content.coven-home .updates-layout { grid-template-columns: minmax(0, 1.8fr) minmax(300px, 1fr); gap: 40px; }
+#main-content.coven-home .updates-layout { display: block; }
 #main-content.coven-home .news-card { background: #100d16; }
 #main-content.coven-home .news-card__media img { object-fit: contain; }
 #main-content.coven-home .news-card:hover .news-card__media img { transform: none; }
@@ -85,14 +84,6 @@
 #main-content.coven-home .profile-tags p { font-size: .875rem; flex-wrap: wrap; }
 
 #main-content.coven-home .links-section { background: radial-gradient(ellipse at 50% 10%, #21122b, transparent 65%), #07060a; }
-#main-content.coven-home .official-links { gap: 20px; }
-#main-content.coven-home .official-link { min-width: 0; min-height: 420px; padding: 30px; background: linear-gradient(160deg, color-mix(in srgb, var(--link-accent) 9%, #100b16), #0b080f 75%); border-color: color-mix(in srgb, var(--link-accent) 22%, transparent); transition: transform 320ms var(--motion-ease), border-color 320ms, box-shadow 320ms; }
-#main-content.coven-home .official-link__topline { font-size: .75rem; line-height: 1.5; }
-#main-content.coven-home .official-link__label { margin-top: 52px; font-size: clamp(2rem, 3.6vw, 3.3rem); line-height: 1.2; }
-#main-content.coven-home .official-link__description { font-size: 1rem; }
-#main-content.coven-home .official-link > a { font-size: .875rem; min-height: 52px; gap: 14px; }
-#main-content.coven-home .official-link::after { transform: scaleX(.3); }
-#main-content.coven-home .official-link:focus-within { border-color: var(--link-accent); }
 
 #main-content.coven-home .guidelines-section { background: linear-gradient(135deg, #100b16, #08060b 65%); }
 #main-content.coven-home .guidelines-layout { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 60px; }
@@ -106,25 +97,11 @@
 #main-content.coven-home .guideline[open] { border-bottom-color: var(--color-line-accent); }
 
 #main-content.coven-home .design-section { background: #0b0810; }
-#main-content.coven-home .design-header > p { font-size: .75rem; line-height: 1.7; }
-#main-content.coven-home .design-card__media { border: 1px solid var(--color-line-strong); }
-#main-content.coven-home .design-card:nth-child(3) { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; background: linear-gradient(115deg, #1c1126, #0c0a11); border: 1px solid var(--color-line); }
-#main-content.coven-home .design-card:nth-child(3) .design-card__media { background: transparent; border: 0; padding: 22px 40px; }
-#main-content.coven-home .design-card:nth-child(3) .design-card__media img { height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
-#main-content.coven-home .design-card:nth-child(3) .design-card__caption { border: 0; padding: 28px; }
-#main-content.coven-home .design-card__caption h3 { font-size: 1rem; }
-#main-content.coven-home .design-card__caption p { font-size: .875rem; }
-#main-content.coven-home .design-card__caption > span, #main-content.coven-home .design-card__caption > i { font-size: .875rem; }
 
-#main-content.coven-home #contact { background: radial-gradient(ellipse at 85% 60%, rgb(87 53 127 / 24%), transparent 60%), #08060b; }
-#main-content.coven-home #contact .container { padding: clamp(26px, 5vw, 60px); border: 1px solid var(--color-line); border-left: 2px solid var(--color-accent); }
-#main-content.coven-home .contact-link { font-size: 1rem; }
-#main-content.coven-home .contact-link:hover { background: rgb(57 255 20 / 6%); }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   #main-content.coven-home .activity-card--green:hover .activity-card__visual img { transform: scale(1.025); }
   #main-content.coven-home .activity-card:hover { border-color: var(--color-line-accent); }
-  #main-content.coven-home .official-link:hover { transform: translateY(-6px); border-color: var(--link-accent); box-shadow: 0 18px 38px rgb(0 0 0 / 25%); }
 }
 @media (prefers-reduced-motion: no-preference) {
   #main-content.coven-home .coven-entered { animation: coven-arrive 700ms var(--motion-ease) backwards; }
@@ -134,12 +111,6 @@
   #main-content.coven-home .activity-card--red { grid-template-columns: 24px minmax(0,1fr); }
   #main-content.coven-home .activity-card--red > a { grid-column: 2; }
   #main-content.coven-home .updates-layout { grid-template-columns: minmax(0, 1fr); }
-  #main-content.coven-home .official-links { grid-template-columns: 1fr; }
-  #main-content.coven-home .official-link { min-height: 0; display: grid; grid-template-columns: minmax(180px,.8fr) minmax(0,1.2fr); column-gap: 40px; }
-  #main-content.coven-home .official-link__topline { grid-column: 1 / -1; }
-  #main-content.coven-home .official-link__label { margin-top: 30px; }
-  #main-content.coven-home .official-link__description { grid-column: 2; grid-row: 2 / 4; }
-  #main-content.coven-home .official-link > a { grid-column: 1; padding-top: 24px; }
 }
 @media (max-width: 920px) {
   #main-content.coven-home .profile-layout { grid-template-columns: 1fr; }
@@ -156,12 +127,17 @@
   #main-content.coven-home .activity-card--red { grid-template-columns: 1fr; gap: 18px; }
   #main-content.coven-home .activity-card--red > a { grid-column: 1; }
   #main-content.coven-home .activity-card h3 { font-size: 3rem; }
-  #main-content.coven-home .official-link { display: flex; padding: 26px; }
-  #main-content.coven-home .official-link__label { margin-top: 32px; font-size: 2.6rem; }
-  #main-content.coven-home .design-card:nth-child(3) { display: block; }
   #main-content.coven-home .profile-facts > div { grid-template-columns: 1fr; gap: 8px; }
   #main-content.coven-home .profile-facts dt span { display: inline; margin-left: 10px; }
   #main-content.coven-home .profile-facts dd { text-align: left; }
   #main-content.coven-home .profile-visual__quote strong { font-size: 1rem; letter-spacing: 0; }
   #main-content.coven-home .guideline__content { padding-inline: 0; }
 }
+
+/* Equal news cards; social content lives in the separate fixed-post card. */
+#main-content.coven-home .news-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+#main-content.coven-home .news-card--featured { grid-column: auto; }
+#main-content.coven-home .news-card--featured h3 { font-size:1.1rem; }
+#main-content.coven-home .news-card p { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+#main-content.coven-home .news-card__body { padding:22px; }
+@media(max-width:800px) { #main-content.coven-home .news-grid { grid-template-columns:1fr; } }
