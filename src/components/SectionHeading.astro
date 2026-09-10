@@ -17,12 +17,17 @@ const subtitles: Record<string, string> = {
   'First Visit': '初めての方へ',
   'Contact': 'お問い合わせ',
 };
+const headings: Record<string, { category: string; title: string }> = {
+  'Into the Night': { category: '配信・動画', title: 'STREAMS & VIDEOS' },
+  'Join the Coven': { category: 'ファンクラブ・ショップ', title: 'SUPPORT & SHOP' },
+};
+const category = headings[title]?.category ?? subtitles[title] ?? eyebrow;
+const displayTitle = headings[title]?.title ?? title;
 ---
 
 <header class:list={['section-heading', `section-heading--${align}`]}>
-  <p class="section-heading__eyebrow"><span aria-hidden="true">✦</span>{eyebrow}</p>
-  <h2>{title}</h2>
-  {subtitles[title] && <p class="section-heading__subtitle">{subtitles[title]}</p>}
+  <p class="section-heading__eyebrow"><span aria-hidden="true">✦</span>{category}</p>
+  <h2>{displayTitle}</h2>
   {description && <p class="section-heading__description">{description}</p>}
 </header>
 

@@ -1,71 +1,55 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import { officialLinks, linkDirectory, twitchSupport } from '../data/site';
+import { officialLinks } from '../data/site';
+const subscriptions = [
+  ...officialLinks.filter(item => item.tone !== 'booth'),
+  { label: 'TWITCH', tone: 'twitch', href: 'https://twitch.tv/eureka_td' },
+];
+const shop = officialLinks.find(item => item.tone === 'booth')!;
 ---
 <section class="section section--deep links-section" id="links">
   <div class="container">
-    <SectionHeading eyebrow="SUPPORT & SHOP" title="Join the Coven" align="center" />
+    <SectionHeading eyebrow="ファンクラブ・ショップ" title="SUPPORT & SHOP" align="center" />
     <div class="support-groups">
-      <div class="support-group">
-        <h3 class="support-category">FAN CLUB</h3>
+      <div>
+        <h3>SUBSCRIBE</h3>
         <div class="support-clubs">
-          {officialLinks.filter(item => item.tone !== 'booth').map(item => (
-            <a class:list={['support-choice', 'support-choice--' + item.tone]} href={item.href} target="_blank" rel="noreferrer">
-              <h4>{item.label}</h4><p>{item.description}</p><span>{item.cta} <i aria-hidden="true">↗</i></span>
-            </a>
-          ))}
+          {subscriptions.map(item => <a class:list={['support-choice', 'support-choice--' + item.tone]} href={item.href} target="_blank" rel="noreferrer"><span>{item.label.toUpperCase()}</span><i aria-hidden="true">↗</i></a>)}
         </div>
-        <details class="support-extra">
-          <summary>Twitchサブスクの特典</summary>
-          <p>{twitchSupport}</p>
-        </details>
+        <div class="support-benefits">
+          <h4>サブスクライブ特典</h4>
+          <p>どのサイトでもサブスクライブしていただくことで、Discordサーバー「ユリーカのお城」に参加できます。<br />詳しい参加方法は、各サイトのDiscord連携方法をご確認ください。</p>
+        </div>
       </div>
-      <div class="support-group">
-        <h3 class="support-category">SHOP</h3>
-        {officialLinks.filter(item => item.tone === 'booth').map(item => (
-          <a class="support-choice support-choice--booth" href={item.href} target="_blank" rel="noreferrer">
-            <h4>{item.label}</h4><p>{item.description}</p><span>{item.cta} <i aria-hidden="true">↗</i></span>
-          </a>
-        ))}
+      <div id="official-links">
+        <h3>OTHERS</h3>
+        <nav class="wishlist-links" aria-label="ほしいものリスト">
+          <a href="https://www.amazon.co.jp/hz/wishlist/ls/1WCQ81BI3X80V?type=wishlist&filter=all&sort=custom&viewType=list" target="_blank" rel="noreferrer">Amazon Wishlist ↗</a>
+          <a href="https://booth.pm/wish_list_names/dxxTRvjd" target="_blank" rel="noreferrer">BOOTH Wishlist ↗</a>
+        </nav>
       </div>
-    </div>
-    <div class="link-directory" id="official-links">
-      <h3>Official Links <span>公式リンク一覧</span></h3>
-      <nav aria-label="公式サービス一覧">
-        {linkDirectory.map((item, index) => (
-          <a href={item.href} target="_blank" rel="noreferrer">
-            <span class="directory-number">{String(index + 1).padStart(2, '0')}</span>
-            <strong>{item.label}</strong><small>{item.note}</small><span aria-hidden="true">↗</span>
-          </a>
-        ))}
-      </nav>
+      <div>
+        <h3>SHOP</h3>
+        <a class="support-choice support-choice--booth" href={shop.href} target="_blank" rel="noreferrer"><span>BOOTH</span><i aria-hidden="true">↗</i></a>
+      </div>
     </div>
   </div>
 </section>
 <style>
-  .support-groups { margin-top: 56px; display: grid; grid-template-columns: minmax(0,2fr) minmax(0,1fr); gap: 28px; }
-  .support-category { margin: 0 0 18px; color: var(--color-text-muted); font: 600 .875rem/1.5 var(--font-display); letter-spacing: .18em; }
-  .support-clubs { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
-  .support-choice { --support-accent: #55f2ad; display: flex; flex-direction: column; padding: 30px 24px; border: 1px solid color-mix(in srgb,var(--support-accent) 30%,transparent); background: linear-gradient(145deg,color-mix(in srgb,var(--support-accent) 7%,#100b16),#0b080f); transition: border-color 220ms, background-color 220ms; }
-  .support-choice--fanbox { --support-accent: #f2ac45; }
-  .support-choice--booth { --support-accent: #ff596e; }
-  .support-choice:hover { border-color: var(--support-accent); }
-  h4 { margin: 0; color: var(--support-accent); font: 700 clamp(2rem,3vw,2.75rem)/1.2 var(--font-display); }
-  .support-choice p { margin-top: 16px; color: var(--color-text-muted); font-size: .875rem; }
-  .support-choice > span { display: flex; justify-content: space-between; gap: 12px; margin-top: 32px; font: 600 .875rem/1.5 var(--font-body); }
-  .support-choice i { color: var(--support-accent); font-style: normal; }
-  .support-extra { margin-top: 20px; color: var(--color-text-muted); font-size: .875rem; }
-  .support-extra summary { cursor: pointer; padding-block: 12px; }
-  .support-extra p { padding-top: 12px; max-width: 62ch; line-height: 2; }
-  .link-directory { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--color-line); }
-  .link-directory h3 { font: 600 1.6rem/1.5 var(--font-display); }
-  .link-directory h3 span { margin-left: 18px; color: var(--color-text-muted); font: 400 .875rem/1.5 var(--font-body); }
-  .link-directory nav { margin-top: 24px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 44px; }
-  .link-directory a { display: grid; grid-template-columns: 26px minmax(0,1fr) auto 20px; align-items: center; gap: 14px; padding-block: 18px; border-bottom: 1px solid var(--color-line); }
-  .link-directory a:hover strong { color: var(--color-accent); }
-  .directory-number { color: var(--color-accent); font-size: .75rem; }
-  .link-directory strong { font: 600 1rem/1.5 var(--font-display); }
-  .link-directory small { color: var(--color-text-muted); font-size: .875rem; }
-  @media(max-width:900px) { .support-groups { grid-template-columns: 1fr; } .link-directory nav { grid-template-columns: 1fr; } }
-  @media(max-width:540px) { .support-clubs { grid-template-columns: 1fr; } .link-directory a { grid-template-columns: 22px minmax(0,1fr) 20px; gap: 10px; } .link-directory small { grid-column: 2; grid-row: 2; } .link-directory a > span:last-child { grid-column: 3; grid-row: 1 / 3; } .link-directory h3 span { display: block; margin: 8px 0 0; } }
+  .support-groups { display:grid; gap:40px; margin-top:48px; }
+  h3 { margin:0 0 16px; color:var(--color-text-muted); font:600 .875rem/1.5 var(--font-display); letter-spacing:.15em; }
+  .support-clubs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+  .support-choice { --support-accent:#55f2ad; display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:88px; padding:20px 24px; border:1px solid color-mix(in srgb,var(--support-accent) 30%,transparent); background:linear-gradient(145deg,color-mix(in srgb,var(--support-accent) 7%,#100b16),#0b080f); color:var(--support-accent); font:700 clamp(1.4rem,2.8vw,2rem)/1.2 var(--font-display); transition:border-color 220ms; }
+  .support-choice--fanbox { --support-accent:#f2ac45; }
+  .support-choice--twitch { --support-accent:#bf94ff; }
+  .support-choice--booth { --support-accent:#ff596e; max-width:360px; }
+  .support-choice:hover { border-color:var(--support-accent); }
+  i { font-size:1rem; font-style:normal; }
+  .support-benefits { margin-top:24px; }
+  h4 { font-size:1rem; }
+  .support-benefits p { margin-top:10px; color:var(--color-text-muted); font-size:.875rem; line-height:1.9; }
+  .wishlist-links { display:flex; flex-wrap:wrap; gap:8px 24px; }
+  .wishlist-links a { padding-block:12px; font-size:.875rem; color:var(--color-text); }
+  .wishlist-links a:hover { color:var(--color-accent); }
+  @media(max-width:540px) { .support-clubs { grid-template-columns:1fr; gap:10px; } .support-choice { min-height:64px; padding:16px 20px; } .wishlist-links { gap:8px 16px; } .wishlist-links a { font-size:.75rem; } }
 </style>

@@ -2,7 +2,7 @@
 import { featuredPost } from '../data/x-post';
 const post = featuredPost;
 ---
-{post && <aside class="x-post-wrap" aria-label="ユリーカのX投稿">
+{post && <aside class="x-post-wrap" id="social" aria-label="ユリーカのX投稿">
   <a class="x-post" href={post.url} target="_blank" rel="noreferrer" aria-label="ユリーカ・ティロドスの投稿をXで見る（外部サイト）">
     <header class="x-post__author">
       <img src={post.avatar} alt="" width="48" height="48" loading="lazy" />
