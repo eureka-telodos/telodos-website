@@ -1,4 +1,5 @@
 ---
+import ExternalIcon from './ExternalIcon.astro';
 import SectionHeading from './SectionHeading.astro';
 import { activities } from '../data/site';
 import { twitchBackground, youtubeBackground } from '../data/activity-media';
@@ -9,6 +10,7 @@ import { twitchBackground, youtubeBackground } from '../data/activity-media';
     <SectionHeading
       eyebrow="STREAMS & CREATION"
       title="Into the Night"
+      description="リアルタイムの配信と、あとから楽しめる映像作品。"
     />
 
     <div class="activity-list">
@@ -29,7 +31,7 @@ import { twitchBackground, youtubeBackground } from '../data/activity-media';
             <p>{activity.description}</p>
           </div>
           <a href={activity.href} target="_blank" rel="noreferrer">
-            {activity.linkLabel}<span aria-hidden="true">↗</span>
+            {activity.linkLabel}<span aria-hidden="true"><ExternalIcon /></span>
           </a>
           <span class="activity-card__watermark" aria-hidden="true">{activity.id === 'twitch' ? 'LIVE' : 'PLAY'}</span>
         </article>

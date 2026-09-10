@@ -1,15 +1,16 @@
 ---
+import ExternalIcon from './ExternalIcon.astro';
 import { contact } from '../data/site';
 ---
 <section class="contact-strip" id="contact" aria-labelledby="contact-heading">
   <div class="container contact-strip__inner">
     <h2 id="contact-heading">CONTACT</h2>
     <p>お仕事・コラボ・掲載等のお問い合わせ</p>
-    <a href={contact.href} target="_blank" rel="noreferrer">DM {contact.handle} <span aria-hidden="true">↗</span></a>
+    <a href={contact.href} target="_blank" rel="noreferrer">CONTACT VIA X <span aria-hidden="true"><ExternalIcon /></span></a>
   </div>
 </section>
 <style>
-  .contact-strip { border-top: 1px solid var(--color-line); background: var(--color-panel); }
+  .contact-strip { width:min(calc(100% - 28px),var(--container-width,1120px)); margin:32px auto 64px; border:1px solid var(--color-line-accent); background:var(--color-panel); box-shadow:0 0 28px rgb(57 255 20 / 8%); }
   .contact-strip__inner { display:flex; flex-wrap:wrap; align-items:center; gap:16px 32px; padding-block:32px; }
   h2 { font:600 1.1rem/1.5 var(--font-display); letter-spacing:.1em; }
   p { font-size:.875rem; color:var(--color-text-muted); }

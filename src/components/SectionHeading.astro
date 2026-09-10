@@ -6,7 +6,7 @@ interface Props {
   align?: 'left' | 'center';
 }
 
-const { eyebrow, title, description, align = 'left' } = Astro.props;
+const { eyebrow, title, description, align = 'center' } = Astro.props;
 const subtitles: Record<string, string> = {
   'Latest Update': 'お知らせ・最近の活動',
   'Into the Night': '配信・動画',

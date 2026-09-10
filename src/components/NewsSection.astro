@@ -1,4 +1,5 @@
 ---
+import ExternalIcon from './ExternalIcon.astro';
 import SectionHeading from './SectionHeading.astro';
 import XPostCard from './XPostCard.astro';
 import { getNews, newsConfigured, usesDesignSnapshot } from '../lib/microcms';
@@ -18,7 +19,8 @@ const news = items ?? await getNews();
 
     {usesDesignSnapshot && <p class="preview-news-note">デザイン確認用：2026年9月9日時点の本番公開記事を表示しています。</p>}
     <div class:list={['updates-layout', archive && 'updates-layout--archive']}>
-    <div>
+    <div class="news-column">
+    {!archive && <h3 class="updates-label">NEWS</h3>}
     <div class="news-grid">
       {news.map((item, index) => {
         const Tag = item.href ? 'a' : 'article';
@@ -37,13 +39,13 @@ const news = items ?? await getNews();
               <time datetime={item.date.replaceAll('.', '-')}>{item.date}</time>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
-              {item.href && <span class="news-card__link">VIEW MORE <i aria-hidden="true">↗</i></span>}
+              {item.href && <span class="news-card__link">VIEW MORE <i aria-hidden="true"><ExternalIcon /></i></span>}
             </div>
           </Tag>
         );
       })}
     </div>
-    {news.length === 0 && <p class="news-empty">{newsConfigured ? '現在、公開中のお知らせはありません。' : 'プレビューのお知らせはmicroCMS接続設定待ちです。'}{!newsConfigured && <a href="https://telodos.com/#news"> 本番のお知らせを見る ↗</a>}</p>}
+    {news.length === 0 && <p class="news-empty">{newsConfigured ? '現在、公開中のお知らせはありません。' : 'プレビューのお知らせはmicroCMS接続設定待ちです。'}{!newsConfigured && <a href="https://telodos.com/#news"> 本番のお知らせを見る <ExternalIcon /></a>}</p>}
     {!archive && <a class="news-more" href="/news/">もっと見る — お知らせ一覧 →</a>}
     </div>
     {!archive && <XPostCard />}
