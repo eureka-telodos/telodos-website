@@ -1,8 +1,9 @@
 ---
+import ExternalIcon from './ExternalIcon.astro';
 import SectionHeading from './SectionHeading.astro';
 import { officialLinks } from '../data/site';
 const subscriptions = [
-  ...officialLinks.filter(item => item.tone !== 'booth'),
+  ...['fanbox', 'fantia'].map(tone => officialLinks.find(item => item.tone === tone)!),
   { label: 'TWITCH', tone: 'twitch', href: 'https://twitch.tv/eureka_td' },
 ];
 const shop = officialLinks.find(item => item.tone === 'booth')!;
@@ -14,7 +15,7 @@ const shop = officialLinks.find(item => item.tone === 'booth')!;
       <div>
         <h3>SUBSCRIBE</h3>
         <div class="support-clubs">
-          {subscriptions.map(item => <a class:list={['support-choice', 'support-choice--' + item.tone]} href={item.href} target="_blank" rel="noreferrer"><span>{item.label.toUpperCase()}</span><i aria-hidden="true">↗</i></a>)}
+          {subscriptions.map(item => <a class:list={['support-choice', 'support-choice--' + item.tone]} href={item.href} target="_blank" rel="noreferrer"><span class="support-name">{item.label.toUpperCase()} <ExternalIcon /></span><small>{item.tone === 'twitch' ? '$5.00～ · Emotes · Badge · Discord' : '¥550～ · Photos · Videos · Discord'}</small></a>)}
         </div>
         <div class="support-benefits">
           <h4>サブスクライブ特典</h4>
@@ -24,13 +25,13 @@ const shop = officialLinks.find(item => item.tone === 'booth')!;
       <div id="official-links">
         <h3>OTHERS</h3>
         <nav class="wishlist-links" aria-label="ほしいものリスト">
-          <a href="https://www.amazon.co.jp/hz/wishlist/ls/1WCQ81BI3X80V?type=wishlist&filter=all&sort=custom&viewType=list" target="_blank" rel="noreferrer">Amazon Wishlist ↗</a>
-          <a href="https://booth.pm/wish_list_names/dxxTRvjd" target="_blank" rel="noreferrer">BOOTH Wishlist ↗</a>
+          <a href="https://www.amazon.co.jp/hz/wishlist/ls/1WCQ81BI3X80V?type=wishlist&filter=all&sort=custom&viewType=list" target="_blank" rel="noreferrer">Amazon Wishlist <ExternalIcon /></a>
+          <a href="https://booth.pm/wish_list_names/dxxTRvjd" target="_blank" rel="noreferrer">BOOTH Wishlist <ExternalIcon /></a>
         </nav>
       </div>
       <div>
         <h3>SHOP</h3>
-        <a class="support-choice support-choice--booth" href={shop.href} target="_blank" rel="noreferrer"><span>BOOTH</span><i aria-hidden="true">↗</i></a>
+        <a class="support-choice support-choice--booth" href={shop.href} target="_blank" rel="noreferrer"><span>BOOTH</span><i aria-hidden="true"><ExternalIcon /></i></a>
       </div>
     </div>
   </div>
@@ -40,7 +41,8 @@ const shop = officialLinks.find(item => item.tone === 'booth')!;
   h3 { margin:0 0 16px; color:var(--color-text-muted); font:600 .875rem/1.5 var(--font-display); letter-spacing:.15em; }
   .support-clubs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
   .support-choice { --support-accent:#55f2ad; display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:88px; padding:20px 24px; border:1px solid color-mix(in srgb,var(--support-accent) 30%,transparent); background:linear-gradient(145deg,color-mix(in srgb,var(--support-accent) 7%,#100b16),#0b080f); color:var(--support-accent); font:700 clamp(1.4rem,2.8vw,2rem)/1.2 var(--font-display); transition:border-color 220ms; }
-  .support-choice--fanbox { --support-accent:#f2ac45; }
+  .support-choice--fanbox { --support-accent:#55f2ad; }
+  .support-choice--fantia { --support-accent:#f2ac45; }
   .support-choice--twitch { --support-accent:#bf94ff; }
   .support-choice--booth { --support-accent:#ff596e; max-width:360px; }
   .support-choice:hover { border-color:var(--support-accent); }
@@ -52,4 +54,12 @@ const shop = officialLinks.find(item => item.tone === 'booth')!;
   .wishlist-links a { padding-block:12px; font-size:.875rem; color:var(--color-text); }
   .wishlist-links a:hover { color:var(--color-accent); }
   @media(max-width:540px) { .support-clubs { grid-template-columns:1fr; gap:10px; } .support-choice { min-height:64px; padding:16px 20px; } .wishlist-links { gap:8px 16px; } .wishlist-links a { font-size:.75rem; } }
+</style>
+<style>
+  .links-section { text-align:center; }
+  .support-clubs .support-choice { container-type:inline-size; flex-direction:column; justify-content:center; gap:6px; padding:14px 12px; }
+  .support-name { display:inline-flex; align-items:center; justify-content:center; gap:10px; }
+  .support-choice small { white-space:nowrap; font:400 clamp(.5rem,4cqw,.75rem)/1.4 var(--font-body); color:var(--color-text-muted); }
+  .wishlist-links { justify-content:center; }
+  .support-choice--booth { margin-inline:auto; justify-content:center; }
 </style>

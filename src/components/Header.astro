@@ -1,4 +1,5 @@
 ---
+import ExternalIcon from './ExternalIcon.astro';
 import { navigation, socialLinks } from '../data/site';
 ---
 
@@ -13,9 +14,6 @@ import { navigation, socialLinks } from '../data/site';
     </nav>
 
     <div class="site-header__actions">
-      <a class="site-header__live" href="https://twitch.tv/eureka_td" target="_blank" rel="noreferrer">
-        Twitch ↗
-      </a>
       <button class="site-header__menu" type="button" aria-expanded="false" aria-controls="mobile-navigation">
         <span></span><span></span>
         <span class="sr-only">メニューを開く</span>
@@ -30,7 +28,7 @@ import { navigation, socialLinks } from '../data/site';
       ))}
     </nav>
     <div class="mobile-navigation__socials">
-      {socialLinks.map((item) => <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>)}
+      {socialLinks.map((item) => <a href={item.href} target="_blank" rel="noreferrer">{item.label} <ExternalIcon /></a>)}
     </div>
   </div>
 </header>

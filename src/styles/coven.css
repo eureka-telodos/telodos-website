@@ -170,5 +170,32 @@
 }
 @media(prefers-reduced-motion:no-preference) {
   #main-content.coven-home .hero__character-main, #main-content.coven-home .hero__character-back { animation:character-emerge 1000ms ease-out 220ms backwards; }
-  @keyframes character-emerge { from { opacity:0; } to { opacity:1; } }
+  @keyframes character-emerge { from { opacity:0; } }
 }
+
+#main-content.coven-home .section-heading h2 { text-wrap:pretty; }
+#main-content.coven-home .profile-content .section-heading { text-align:right; }
+#main-content.coven-home .profile-content .section-heading__eyebrow { justify-content:flex-end; }
+#main-content.coven-home .profile-content .section-heading::after { margin-left:auto; }
+#main-content.coven-home .profile-visual { background:none; }
+#main-content.coven-home .profile-visual::before { display:none; }
+#main-content.coven-home .profile-visual img { filter:drop-shadow(0 0 22px rgb(57 255 20 / 18%)); }
+#main-content.coven-home .hero__character-main img { animation:dark-emerge 1000ms ease-out 220ms backwards; }
+@keyframes dark-emerge { from { filter:brightness(0) blur(5px); } to { filter:brightness(1) blur(0); } }
+@media(prefers-reduced-motion:reduce) { #main-content.coven-home .hero__character-main img { animation:none; } }
+#main-content.coven-home .activity-card--red > a { color:#fff; background:#a20f35; border-color:#ff3c68; }
+@media(hover:hover) {
+  #main-content.coven-home .activity-card--red:hover { border-color:#ff3c68; box-shadow:0 0 26px rgb(255 60 104 / 18%); }
+  #main-content.coven-home .activity-card--red > a:hover { background:#bd1641; }
+}
+.updates-label { margin:0 0 20px; color:var(--color-text-muted); font:600 .875rem/1.5 var(--font-display); letter-spacing:.12em; }
+@media(min-width:1001px) {
+  #main-content.coven-home .updates-layout { align-items:stretch; }
+  #main-content.coven-home .news-column { display:flex; flex-direction:column; }
+  #main-content.coven-home .news-column .news-grid { flex:1; grid-auto-rows:1fr; }
+  #main-content.coven-home .news-more { align-self:flex-start; }
+  #main-content.coven-home .updates-layout .x-post-wrap { display:flex; flex-direction:column; }
+  #main-content.coven-home .x-post { flex:1; }
+  #main-content.coven-home .x-post-follow { margin-bottom:0; }
+}
+@media(min-width:1200px) { #main-content.coven-home .section-heading h2 { white-space:nowrap; } }

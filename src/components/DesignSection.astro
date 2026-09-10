@@ -9,7 +9,7 @@ import { designAssets } from '../data/design';
         <div class:list={['reference-image', index === 2 && 'reference-image--logo']}>
           <img src={asset.image} alt={asset.alt} width="1920" height="1080" loading="lazy" decoding="async" />
         </div>
-        <span><strong>{asset.title}</strong><small>{asset.description}</small></span><i aria-hidden="true">↗</i>
+        <span><strong>{asset.title}</strong><small>{asset.description}</small></span>
       </a>
     ))}
   </div>

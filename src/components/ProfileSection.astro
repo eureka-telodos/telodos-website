@@ -6,7 +6,6 @@ import { profile } from '../data/site';
 <section class="section profile-section" id="profile">
   <div class="container profile-layout">
     <div class="profile-visual">
-      <span class="profile-visual__word" aria-hidden="true">VAMPIRE</span>
       <img src="/images/profile/standing.webp" alt="ユリーカ・ティロドス立ち絵" width="2560" height="3840" loading="lazy" decoding="async" />
       <div class="profile-visual__quote">
         <p>{profile.englishCatchphrase}</p>
@@ -15,7 +14,7 @@ import { profile } from '../data/site';
     </div>
 
     <div class="profile-content">
-      <SectionHeading eyebrow="BIOGRAPHY" title="Character Profile" />
+      <SectionHeading eyebrow="BIOGRAPHY" title="Character Profile" align="left" />
       <p class="profile-content__intro">{profile.introduction}</p>
 
       <dl class="profile-facts">
