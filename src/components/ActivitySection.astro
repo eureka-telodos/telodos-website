@@ -1,7 +1,7 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import { activities } from '../data/site';
-import { twitchBackground } from '../data/activity-media';
+import { twitchBackground, youtubeBackground } from '../data/activity-media';
 ---
 
 <section class="section section--deep activity-section" id="activity">
@@ -12,13 +12,15 @@ import { twitchBackground } from '../data/activity-media';
     />
 
     <div class="activity-list">
-      {activities.map((activity) => (
-        <article class:list={['activity-card', `activity-card--${activity.tone}`]}>
-          {activity.id === 'twitch' && <div class="activity-card__background" aria-hidden="true" style={twitchBackground ? `--video-position: ${twitchBackground.position}` : undefined}>
-            {twitchBackground && <>
-              <img class="activity-card__poster" src={twitchBackground.poster} alt="" loading="lazy" decoding="async" />
-              <video class="activity-card__video" data-src={twitchBackground.src} poster={twitchBackground.poster} autoplay muted loop playsinline preload="none" tabindex="-1"></video>
-            </>}
+      {activities.map((activity) => {
+        const background = activity.id === 'twitch' ? twitchBackground : youtubeBackground;
+        return (
+        <article id={activity.id} class:list={['activity-card', `activity-card--${activity.tone}`]}>
+          {background && <div class="activity-card__background" aria-hidden="true" style={`--video-position: ${background.position}`}>
+            <>
+              <img class="activity-card__poster" src={background.poster} alt="" loading="lazy" decoding="async" />
+              <video class="activity-card__video" data-src={background.src} poster={background.poster} autoplay muted loop playsinline preload="none" tabindex="-1"></video>
+            </>
             <div class="activity-card__overlay"></div>
           </div>}
           <div class="activity-card__content">
@@ -31,7 +33,7 @@ import { twitchBackground } from '../data/activity-media';
           </a>
           <span class="activity-card__watermark" aria-hidden="true">{activity.id === 'twitch' ? 'LIVE' : 'PLAY'}</span>
         </article>
-      ))}
+      ); })}
     </div>
   </div>
 </section>
@@ -111,10 +113,10 @@ import { twitchBackground } from '../data/activity-media';
   .activity-card__poster, .activity-card__video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:var(--video-position, center); }
   .activity-card__video { transition:filter 350ms,transform 350ms; }
   .activity-card__overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgb(0 0 0 / 30%),rgb(0 0 0 / 65%)); }
-  .activity-card--green { isolation:isolate; }
-  .activity-card--green::before { z-index:1; }
+  .activity-card { isolation:isolate; }
+  .activity-card::before { z-index:1; }
   @media(hover:hover) and (prefers-reduced-motion:no-preference) {
-    .activity-card--green:hover .activity-card__video { filter:brightness(1.08); transform:scale(1.015); }
+    .activity-card:hover .activity-card__video { filter:brightness(1.08); transform:scale(1.015); }
   }
   @media(prefers-reduced-motion:reduce) { .activity-card__video { display:none; } }
 
