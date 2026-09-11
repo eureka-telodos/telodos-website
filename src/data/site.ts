@@ -22,12 +22,13 @@ export const site = {
 } as const;
 
 export const navigation: NavigationItem[] = [
-  { label: 'ACTIVITY', href: '#activity' },
-  { label: 'NEWS', href: '#news' },
-  { label: 'PROFILE', href: '#profile' },
-  { label: 'LINKS', href: '#links' },
+  { label: 'STREAMS & VIDEOS', href: '#activity' },
+  { label: 'LATEST UPDATE', href: '#news' },
+  { label: 'CHARACTER PROFILE', href: '#profile' },
+  { label: 'SUPPORT & SHOP', href: '#links' },
   { label: 'GUIDELINES', href: '#guidelines' },
   ...(publishedVideos.length || previewVideos ? [{ label: 'VIDEOS', href: '#videos' }] : []),
+  { label: 'DESIGN REFERENCES', href: '#design' },
   { label: 'CONTACT', href: '#contact' },
 ];
 

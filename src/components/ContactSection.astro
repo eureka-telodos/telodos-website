@@ -3,19 +3,20 @@ import ExternalIcon from './ExternalIcon.astro';
 import { contact } from '../data/site';
 ---
 <section class="contact-strip" id="contact" aria-labelledby="contact-heading">
-  <div class="container contact-strip__inner">
+  <a class="container contact-strip__inner" href={contact.href} target="_blank" rel="noreferrer">
     <h2 id="contact-heading">CONTACT</h2>
     <p>お仕事・コラボ・掲載等のお問い合わせ</p>
-    <a href={contact.href} target="_blank" rel="noreferrer">CONTACT VIA X <span aria-hidden="true"><ExternalIcon /></span></a>
-  </div>
+    <span class="contact-strip__cta">CONTACT VIA X <span aria-hidden="true"><ExternalIcon /></span></span>
+  </a>
 </section>
 <style>
   .contact-strip { width:min(calc(100% - 28px),var(--container-width,1120px)); margin:32px auto 64px; border:1px solid var(--color-line-accent); background:var(--color-panel); box-shadow:0 0 28px rgb(57 255 20 / 8%); }
-  .contact-strip__inner { display:flex; flex-wrap:wrap; align-items:center; gap:16px 32px; padding-block:32px; }
+  .contact-strip__inner { display:flex; flex-wrap:wrap; align-items:center; gap:16px 32px; padding-block:32px; cursor:pointer; color:inherit; width:100%; padding-inline:24px; }
   h2 { font:600 1.1rem/1.5 var(--font-display); letter-spacing:.1em; }
   p { font-size:.875rem; color:var(--color-text-muted); }
-  a { margin-left:auto; padding-block:12px; font-size:.875rem; color:var(--color-accent); }
-  a span { margin-left:16px; }
-  a:hover { color:white; }
-  @media(max-width:680px) { .contact-strip__inner { display:grid; gap:8px; } a { margin-left:0; } }
+  .contact-strip__cta { margin-left:auto; padding-block:12px; font-size:.875rem; color:var(--color-accent); }
+  .contact-strip__cta > span { margin-left:16px; }
+  .contact-strip:has(a:hover), .contact-strip:has(a:focus-visible) { box-shadow:0 0 28px rgb(57 255 20 / 24%); }
+  a:focus-visible { outline:2px solid var(--color-accent); outline-offset:4px; }
+  @media(max-width:680px) { .contact-strip__inner { display:grid; gap:8px; } .contact-strip__cta { margin-left:0; } }
 </style>

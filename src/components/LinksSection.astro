@@ -31,21 +31,21 @@ const shop = officialLinks.find(item => item.tone === 'booth')!;
       </div>
       <div>
         <h3>SHOP</h3>
-        <a class="support-choice support-choice--booth" href={shop.href} target="_blank" rel="noreferrer"><span>BOOTH</span><i aria-hidden="true"><ExternalIcon /></i></a>
+        <a class="support-choice support-choice--booth" href={shop.href} target="_blank" rel="noreferrer"><span class="support-name">BOOTH <ExternalIcon /></span><small>グッズや、開発したツール等を販売中</small></a>
       </div>
     </div>
   </div>
 </section>
 <style>
   .support-groups { display:grid; gap:40px; margin-top:48px; }
-  h3 { margin:0 0 16px; color:var(--color-text-muted); font:600 .875rem/1.5 var(--font-display); letter-spacing:.15em; }
+  h3 { margin:0 0 16px; color:var(--color-text); font:700 1rem/1.5 var(--font-display); letter-spacing:.18em; }
   .support-clubs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
-  .support-choice { --support-accent:#55f2ad; display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:88px; padding:20px 24px; border:1px solid color-mix(in srgb,var(--support-accent) 30%,transparent); background:linear-gradient(145deg,color-mix(in srgb,var(--support-accent) 7%,#100b16),#0b080f); color:var(--support-accent); font:700 clamp(1.4rem,2.8vw,2rem)/1.2 var(--font-display); transition:border-color 220ms; }
-  .support-choice--fanbox { --support-accent:#55f2ad; }
-  .support-choice--fantia { --support-accent:#f2ac45; }
+  .support-choice { --support-accent:#55f2ad; display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:88px; padding:20px 24px; border:1px solid color-mix(in srgb,var(--support-accent) 30%,transparent); background:linear-gradient(145deg,color-mix(in srgb,var(--support-accent) 7%,#100b16),#0b080f); color:var(--support-accent); font:700 clamp(1.4rem,2.8vw,2rem)/1.2 var(--font-display); transition:border-color 220ms,box-shadow 220ms; }
+  .support-choice--fanbox { --support-accent:#f2ac45; }
+  .support-choice--fantia { --support-accent:#c83a6f; }
   .support-choice--twitch { --support-accent:#bf94ff; }
   .support-choice--booth { --support-accent:#ff596e; max-width:360px; }
-  .support-choice:hover { border-color:var(--support-accent); }
+  .support-choice:hover, .support-choice:focus-visible { border-color:var(--support-accent); box-shadow:0 0 24px color-mix(in srgb,var(--support-accent) 20%,transparent); }
   i { font-size:1rem; font-style:normal; }
   .support-benefits { margin-top:24px; }
   h4 { font-size:1rem; }
@@ -61,5 +61,6 @@ const shop = officialLinks.find(item => item.tone === 'booth')!;
   .support-name { display:inline-flex; align-items:center; justify-content:center; gap:10px; }
   .support-choice small { white-space:nowrap; font:400 clamp(.5rem,4cqw,.75rem)/1.4 var(--font-body); color:var(--color-text-muted); }
   .wishlist-links { justify-content:center; }
-  .support-choice--booth { margin-inline:auto; justify-content:center; }
+  .support-choice--booth { margin-inline:auto; justify-content:center; flex-direction:column; gap:8px; }
+  .support-choice--booth small { white-space:normal; font-size:.75rem; }
 </style>

@@ -72,7 +72,11 @@ import { navigation, site, socialLinks } from '../data/site';
 
   @media (max-width: 780px) {
     .site-footer__main { grid-template-columns: 1fr; }
-    .site-footer__brand { margin-left: -24px; }
+    .site-footer { text-align:center; }
+    .site-footer__main { justify-items:center; }
+    .site-footer__brand { margin-inline:auto; }
+    .site-footer nav, .site-footer__socials { justify-content:center; }
+    .site-footer__bottom { flex-direction:column; align-items:center; gap:20px; line-height:1.6; }
     .site-footer__socials { padding-top: 16px; }
   }
 </style>
