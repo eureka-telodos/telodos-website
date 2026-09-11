@@ -48,7 +48,7 @@ export const profile = {
   catchphrase: 'まだまだ夜はこれから…だよね？',
   englishCatchphrase: 'Will you stay up late with me tonight?',
   introduction:
-    '黒と緑を纏う吸血鬼。',
+    '黒と緑を纏う吸血鬼、ユリーカ・ティロドス。ゲーム配信やVRChatでのワールド制作・撮影を中心に活動しています。配信でも作品でも、少しだけ夜更かししたくなるひとときを。',
   facts: [
     { label: '真名', englishLabel: 'Name', value: 'ユリーカ・ティロドス' },
     { label: '種族', englishLabel: 'Race', value: '吸血鬼 (Vampire)', accent: true },
