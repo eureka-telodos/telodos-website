@@ -185,7 +185,7 @@
 @media(prefers-reduced-motion:reduce) { #main-content.coven-home .hero__character-main img { animation:none; } }
 #main-content.coven-home .activity-card--red > a { color:#fff; background:#a20f35; border-color:#ff3c68; }
 @media(hover:hover) {
-  #main-content.coven-home .activity-card--red:hover { border-color:#ff3c68; box-shadow:0 0 26px rgb(255 60 104 / 18%); }
+  #main-content.coven-home .activity-card:hover { border-color:var(--activity-accent); box-shadow:0 0 26px color-mix(in srgb,var(--activity-accent) 18%,transparent); }
   #main-content.coven-home .activity-card--red > a:hover { background:#bd1641; }
 }
 .updates-label { margin:0 0 20px; color:var(--color-text-muted); font:600 .875rem/1.5 var(--font-display); letter-spacing:.12em; }
@@ -199,3 +199,11 @@
   #main-content.coven-home .x-post-follow { margin-bottom:0; }
 }
 @media(min-width:1200px) { #main-content.coven-home .section-heading h2 { white-space:nowrap; } }
+
+/* Service colors share the same card interaction. */
+#main-content.coven-home .activity-card--green { --activity-accent:#39ff14; }
+#main-content.coven-home .activity-card--red { --activity-accent:#ff3c68; }
+#main-content.coven-home .profile-content { container-type:inline-size; }
+#main-content.coven-home .profile-content .section-heading { display:block; text-align:right; }
+#main-content.coven-home .profile-content .section-heading__eyebrow { display:flex; justify-content:flex-end; }
+#main-content.coven-home .profile-content .section-heading h2 { display:block; white-space:nowrap; text-transform:none; font-size:clamp(1.5rem,7.6cqw,3.2rem); }
