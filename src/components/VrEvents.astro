@@ -1,0 +1,35 @@
+---
+import ExternalIcon from './ExternalIcon.astro';
+import { vrEvents } from '../data/vr-events';
+---
+<section class="vr-events" aria-labelledby="vr-events-heading">
+  <h3 id="vr-events-heading">VR EVENTS</h3>
+  <div class="vr-events__grid">
+    {vrEvents.map(event => (
+      <a class="vr-event" href={event.href} target="_blank" rel="noreferrer">
+        <div class="vr-event__logo"><img src={event.logo} alt={event.name + ' ロゴ'} width={event.width} height={event.height} loading="lazy" decoding="async" /></div>
+        <div class="vr-event__details">
+          <h4>{event.name}</h4>
+          <p>{event.description}</p>
+        </div>
+        <span class="vr-event__external" aria-hidden="true"><ExternalIcon /></span>
+      </a>
+    ))}
+  </div>
+</section>
+<style>
+  .vr-events { margin-top:40px; }
+  h3 { margin-bottom:20px; text-align:center; color:var(--color-text-muted); font:600 .875rem/1.5 var(--font-display); letter-spacing:.14em; }
+  .vr-events__grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+  .vr-event { display:grid; grid-template-columns:minmax(0,1fr) auto; align-content:start; gap:14px 12px; padding:16px; border:1px solid var(--color-line); background:var(--color-panel); color:var(--color-text); }
+  .vr-event__logo { grid-column:1 / -1; display:grid; place-items:center; height:96px; background:#000; }
+  .vr-event__logo img { display:block; width:100%; height:96px; object-fit:contain; }
+  .vr-event__details { min-width:0; }
+  h4 { font:600 1rem/1.5 var(--font-display); }
+  p { margin-top:6px; font-size:.8125rem; line-height:1.7; color:var(--color-text-muted); overflow-wrap:anywhere; }
+  .vr-event__external { align-self:center; color:var(--color-text-muted); }
+  .vr-event:hover { border-color:var(--color-line-accent); }
+  .vr-event:focus-visible { outline:2px solid var(--color-accent); outline-offset:4px; }
+  @media(max-width:900px) { .vr-events__grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media(max-width:560px) { .vr-events__grid { grid-template-columns:1fr; } }
+</style>

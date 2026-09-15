@@ -22,7 +22,7 @@ export const site = {
 } as const;
 
 export const navigation: NavigationItem[] = [
-  { label: 'STREAMS & VIDEOS', href: '#activity' },
+  { label: 'ACTIVITIES', href: '#activity' },
   { label: 'LATEST UPDATE', href: '#news' },
   { label: 'CHARACTER PROFILE', href: '#profile' },
   { label: 'SUPPORT & SHOP', href: '#links' },
