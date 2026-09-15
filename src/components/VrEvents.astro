@@ -7,7 +7,7 @@ import { vrEvents } from '../data/vr-events';
   <div class="vr-events__grid">
     {vrEvents.map(event => (
       <a class="vr-event" href={event.href} target="_blank" rel="noreferrer">
-        <div class="vr-event__logo"><img src={event.logo} alt={event.name + ' ロゴ'} loading="lazy" decoding="async" /></div>
+        <div class="vr-event__logo"><img src={event.logo} alt={event.name + ' ロゴ'} width={event.width} height={event.height} loading="lazy" decoding="async" /></div>
         <div class="vr-event__details">
           <h4>{event.name}</h4>
           <p>{event.description}</p>
