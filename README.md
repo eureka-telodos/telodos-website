@@ -9,6 +9,7 @@ Astroで静的HTMLを生成しています。掲載内容と画面の部品を�
 | 更新内容 | ファイル |
 | --- | --- |
 | ニュース | microCMS の `etdnews` → `news` |
+| VR EVENTS | microCMS（切り替えは[設定手順](docs/microcms-vr-events.md)を参照） |
 | 初めての方へ・紹介動画 | `src/data/videos.ts` |
 | プロフィール・SNS・公式リンク | `src/data/site.ts` |
 | ガイドライン | `src/data/guidelines.ts` |
